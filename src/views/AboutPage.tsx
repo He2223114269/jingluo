@@ -29,10 +29,15 @@ export default function AboutPage() {
                     <path d="M6 9V14C6 14 8 16 10 16C12 16 14 14 14 14V9" stroke="currentColor" strokeWidth="1.5" fill="none"/>
                   </svg>
                 </div>
-                <div>
+                <div className="flex-1">
                   <h3 className="text-base font-semibold text-slate-100">{aboutData.education.school}</h3>
                   <p className="text-sm text-slate-400 mt-1">{aboutData.education.major}</p>
-                  <p className="text-sm text-slate-500 mt-1">{aboutData.education.degree} · 绩点 {aboutData.education.gpa}</p>
+                  <p className="text-sm text-slate-500 mt-0.5">{aboutData.education.degree} · 绩点 {aboutData.education.gpa} · {aboutData.education.political}</p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {aboutData.education.courses.map((c, i) => (
+                      <span key={i} className="text-xs text-slate-400 bg-slate-700/50 px-2 py-1 rounded">{c}</span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -61,11 +66,67 @@ export default function AboutPage() {
           </section>
         </AnimatedSection>
 
-        {/* Career Start */}
+        {/* Campus Projects */}
         <AnimatedSection>
           <section className="mb-12">
             <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
               <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">03</span>
+              校园项目
+            </h2>
+            <div className="space-y-4">
+              {aboutData.campusProjects.map((proj, i) => (
+                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-6">
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-100">{proj.title}</h3>
+                      <p className="text-xs text-cyan-400/70 mt-0.5">{proj.role}</p>
+                    </div>
+                    <span className="text-xs text-slate-500 bg-slate-700/50 px-2 py-1 rounded shrink-0">{proj.period}</span>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-3">{proj.description}</p>
+                  <p className="text-sm text-cyan-400/80 mb-3">→ {proj.result}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {proj.tags.map((tag, j) => (
+                      <span key={j} className="text-xs text-slate-500 bg-slate-700/30 px-2 py-0.5 rounded">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* Research */}
+        <AnimatedSection>
+          <section className="mb-12">
+            <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">04</span>
+              科研经历
+            </h2>
+            <div className="space-y-4">
+              {aboutData.research.projects.map((rp, i) => (
+                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-6">
+                  <div className="flex items-start justify-between gap-4 mb-2">
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-100">{rp.title}</h3>
+                      <p className="text-sm text-slate-400 mt-0.5">{rp.subtitle}</p>
+                      <p className="text-xs text-cyan-400/70 mt-0.5">{rp.role}</p>
+                    </div>
+                    <span className="text-xs text-slate-500 bg-slate-700/50 px-2 py-1 rounded shrink-0">{rp.period}</span>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed mt-3">{rp.description}</p>
+                  <p className="text-sm text-cyan-400/80 mt-3">→ {rp.result}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* Career */}
+        <AnimatedSection>
+          <section className="mb-12">
+            <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">05</span>
               职业经历
             </h2>
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6">
@@ -91,7 +152,7 @@ export default function AboutPage() {
         <AnimatedSection>
           <section>
             <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">03</span>
+              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">06</span>
               能力成长路径
             </h2>
             <div className="relative">

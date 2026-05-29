@@ -10,7 +10,7 @@ export default function AboutPage() {
         <AnimatedSection>
           <div className="mb-16">
             <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 mb-4">关于我</h1>
-            <p className="text-lg text-slate-400">一名风控建模工程师的成长路径</p>
+            <p className="text-lg text-slate-400">一名风控建模算法工程师的成长路径</p>
           </div>
         </AnimatedSection>
 
@@ -32,9 +32,31 @@ export default function AboutPage() {
                 <div>
                   <h3 className="text-base font-semibold text-slate-100">{aboutData.education.school}</h3>
                   <p className="text-sm text-slate-400 mt-1">{aboutData.education.major}</p>
-                  <p className="text-sm text-slate-500 mt-1">{aboutData.education.degree}</p>
+                  <p className="text-sm text-slate-500 mt-1">{aboutData.education.degree} · 绩点 {aboutData.education.gpa}</p>
                 </div>
               </div>
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* Awards */}
+        <AnimatedSection>
+          <section className="mb-12">
+            <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
+              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">02</span>
+              竞赛与成果
+            </h2>
+            <div className="space-y-3">
+              {aboutData.awards.map((award, i) => (
+                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-4 flex items-start gap-3">
+                  <span className="text-cyan-400 mt-0.5 shrink-0">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                      <path d="M8 1L10 5.5L15 6L11.5 9.5L12.5 15L8 12L3.5 15L4.5 9.5L1 6L6 5.5L8 1Z"/>
+                    </svg>
+                  </span>
+                  <p className="text-sm text-slate-300">{award}</p>
+                </div>
+              ))}
             </div>
           </section>
         </AnimatedSection>
@@ -43,8 +65,8 @@ export default function AboutPage() {
         <AnimatedSection>
           <section className="mb-12">
             <h2 className="text-lg font-semibold text-slate-100 mb-6 flex items-center gap-3">
-              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">02</span>
-              职业起点
+              <span className="w-8 h-8 rounded-lg bg-cyan-400/10 border border-cyan-400/20 flex items-center justify-center text-cyan-400 text-sm">03</span>
+              职业经历
             </h2>
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6">
               <div className="flex items-start gap-4">
@@ -56,8 +78,9 @@ export default function AboutPage() {
                 </div>
                 <div>
                   <h3 className="text-base font-semibold text-slate-100">{aboutData.career.role}</h3>
-                  <p className="text-sm text-slate-400 mt-1">{aboutData.career.company}</p>
-                  <p className="text-sm text-slate-500 mt-1">{aboutData.career.focus}</p>
+                  <p className="text-sm text-cyan-400/80 mt-0.5">{aboutData.career.company}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{aboutData.career.period}</p>
+                  <p className="text-sm text-slate-400 mt-2">{aboutData.career.focus}</p>
                 </div>
               </div>
             </div>

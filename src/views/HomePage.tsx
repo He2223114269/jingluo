@@ -27,9 +27,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               系统运行中
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-100 tracking-tight mb-6">
-              风控建模工程师
+              风控建模算法工程师
             </h1>
             <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+              独立负责实时授信业务风控建模与策略制定<br className="hidden sm:block" />
               构建数据驱动的风控系统，持续降低业务资损
             </p>
           </motion.div>

@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "RiskControl.sys — 风控建模工程师",
-  description: "构建数据驱动的风控系统，持续降低业务资损",
+  title: "Jingluo · 风控建模算法工程师",
+  description: "独立负责实时授信业务风控建模与策略制定 · 构建数据驱动的风控系统",
 };
 
 export default function RootLayout({

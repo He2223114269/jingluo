@@ -116,6 +116,18 @@ export default function AboutPage() {
                   </div>
                   <p className="text-sm text-slate-400 leading-relaxed mt-3">{rp.description}</p>
                   <p className="text-sm text-cyan-400/80 mt-3">→ {rp.result}</p>
+                  {(rp as any).link && (
+                    <button
+                      onClick={() => {
+                        window.location.hash = (rp as any).link;
+                        window.dispatchEvent(new Event('hashchange'));
+                      }}
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"
+                    >
+                      查看项目详情
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/></svg>
+                    </button>
+                  )}
                 </div>
               ))}
             </div>

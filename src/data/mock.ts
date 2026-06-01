@@ -66,6 +66,15 @@ export const projects = [
     teamSize: '项目负责人',
     duration: '2023.07 - 2024.06',
   },
+  {
+    id: 'ecomind',
+    title: 'Ecomind——基于LSTM的智能电网项目',
+    description: '第十六届节能减排社会实践与科技竞赛国家三等奖（项目创始人）。基于LSTM构建用电负荷预测模型，分析用户用电数据与行为模式，提供针对性节电建议，测试可减少12-21%电费。',
+    tags: ['LSTM', '时序预测', '物联网', '节能减排'],
+    status: '已完成',
+    teamSize: '项目创始人',
+    duration: '2023.04 - 2023.07',
+  },
 ];
 
 export const articles = [

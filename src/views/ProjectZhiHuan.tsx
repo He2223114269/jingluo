@@ -69,6 +69,8 @@ export default function ProjectZhiHuan() {
             </button>
             <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">互联网+ 国三</span>
+              <span className="px-2.5 py-1 rounded-md bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-medium">高教主赛道</span>
+              <span className="px-2.5 py-1 rounded-md bg-slate-500/10 border border-slate-500/20 text-slate-400 text-xs font-medium">本科生创意组</span>
               <span className="px-2.5 py-1 rounded-md bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">污泥资源化</span>
               <span className="px-2.5 py-1 rounded-md bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium">3项专利</span>
             </div>
@@ -107,12 +109,17 @@ export default function ProjectZhiHuan() {
               <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
                 <h2 className="text-xl font-semibold text-slate-100 mb-4">项目背景</h2>
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  随着我国城市化进程加快，污水处理厂污泥产量急剧增加。2022年污泥年产量达7809.1万吨，预计2025年超过9000万吨。
-                  污泥不仅含水量高、易腐烂，还含有大量病原菌、重金属等有害物质，未经处理随意堆放极易造成严重的二次污染。
+                  随着我国城市化进程加快，污泥产量急剧增加。预计2025年突破1亿吨，污泥处理市场规模超700亿元。
+                  污泥含水率高（浓缩后约97%，脱水后仍达80%），当含水量达79.9%时，热值全部用于水分蒸发，热量损失100%。
+                  当前我国生物质能源在能源消费结构中占比不足3.1%，远低于全球均值8.09%，提高占比刻不容缓。
+                </p>
+                <p className="text-slate-300 leading-relaxed mb-4">
+                  针对污泥含水率高、资源化利用难两大痛点，智环生态团队经实地走访、三下乡实践与产研学协同创新，
+                  研发四大核心技术，设计一体化污泥燃料制备设备，实现污泥资源化利用。
                 </p>
                 <p className="text-slate-300 leading-relaxed">
-                  国家自"十二五"以来持续出台政策推动污泥无害化、资源化利用。智环生态项目正是在这一背景下，
-                  致力于通过创新的技术路线和商业模式，实现污泥的资源化利用，变废为宝。
+                  国家政策要求到2025年污泥无害化处置率达90%以上。在此背景下，智环生态项目构建"污水厂→污泥处理→水泥厂"
+                  创新链路，将污泥制成再生燃料替代煤炭，燃烧后CO₂排放仅为等量煤炭的5%。
                 </p>
               </div>
             </AnimatedSection>
@@ -170,6 +177,43 @@ export default function ProjectZhiHuan() {
                 </div>
               </div>
             </AnimatedSection>
+
+            <AnimatedSection delay={0.25}>
+              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
+                <h2 className="text-xl font-semibold text-slate-100 mb-6">市场验证</h2>
+                <div className="space-y-4">
+                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
+                    <h3 className="text-sm font-medium text-cyan-300 mb-2">浏阳市北控水务（城市污泥）</h3>
+                    <div className="grid grid-cols-3 gap-3 text-center text-xs mb-2">
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium block">20吨/天</span><span className="text-slate-500">处置规模</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium block">7吨/天</span><span className="text-slate-500">生物燃料产出</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium block">一次性脱水</span><span className="text-slate-500">制备燃料</span></div>
+                    </div>
+                    <div className="text-xs text-slate-500">工艺路线：一次性污泥脱水制备生物质燃料｜运行效果：减量化无害化明显，产品性能优良</div>
+                  </div>
+
+                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
+                    <h3 className="text-sm font-medium text-purple-300 mb-2">安徽六安凯天环保（城市污泥）</h3>
+                    <div className="grid grid-cols-3 gap-3 text-center text-xs mb-2">
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-purple-400 font-medium block">115吨/天</span><span className="text-slate-500">处置规模</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-purple-400 font-medium block">40吨/天</span><span className="text-slate-500">生物燃料产出</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-purple-400 font-medium block">低温极限真空</span><span className="text-slate-500">脱水技术</span></div>
+                    </div>
+                    <div className="text-xs text-slate-500">核心技术：低温干燥极限真空脱水 + 生物质裂化裂解催化剂｜凯天环保出具应用证明</div>
+                  </div>
+
+                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
+                    <h3 className="text-sm font-medium text-emerald-300 mb-2">株洲中材水泥（燃料应用）</h3>
+                    <div className="grid grid-cols-3 gap-3 text-center text-xs mb-2">
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-emerald-400 font-medium block">替代16%</span><span className="text-slate-500">煤的使用</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-emerald-400 font-medium block">547万元</span><span className="text-slate-500">年节约成本</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-emerald-400 font-medium block">29,424吨</span><span className="text-slate-500">年减排CO₂</span></div>
+                    </div>
+                    <div className="text-xs text-slate-500">经株洲中材水泥对燃料从热值、空气干燥基水分等六个维度全面检测，可部分替代煤炭使用</div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
           </>
         )}
 
@@ -199,25 +243,26 @@ export default function ProjectZhiHuan() {
 
                 <div className="space-y-6">
                   <div className="bg-[#0f172a]/50 rounded-lg p-5 border border-[#334155]/50">
-                    <h3 className="text-sm font-medium text-cyan-300 mb-3">负压低沸烘干原理</h3>
+                    <h3 className="text-sm font-medium text-cyan-300 mb-3">一体化低温真空干燥设备</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">
-                      将污泥送入真空蒸馏罐，利用真空泵抽气形成负压环境。在负压状态下水的沸点降低，
-                      升高温度产生水蒸气，水蒸气在真空泵内冷凝成水，由气态转变为液态后体积迅速缩小，
-                      进一步促进负压环境的形成。整体热能利用效率达到<span className="text-cyan-400">90%以上</span>。
+                      采用"仿生原理+重力过滤+挤压+低温干燥极限真空"的复合脱水设计，效率高、占地小、安装简便。
+                      利用真空泵形成负压环境降低水的沸点，污泥中的水分在低温下蒸发，热能利用效率达90%以上。
+                      内置搅拌系统防止结块，一次性将含水率从80%降至30%以下，体积缩减为原来的1/3。
                     </p>
                     <div className="mt-3 grid grid-cols-3 gap-3 text-center text-xs">
-                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">80%→30%</span><br /><span className="text-slate-500">含水率降幅</span></div>
-                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">&gt;90%</span><br /><span className="text-slate-500">热能利用率</span></div>
-                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">1/3</span><br /><span className="text-slate-500">体积缩减</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">能耗减30%</span><br /><span className="text-slate-500">vs 市场现有设备</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">成本降40%</span><br /><span className="text-slate-500">vs 市场现有设备</span></div>
+                      <div className="p-2 rounded bg-slate-800/50"><span className="text-cyan-400 font-medium">小型化设计</span><br /><span className="text-slate-500">无需清洗水</span></div>
                     </div>
+                    <div className="mt-2 text-xs text-slate-500">获湖南省环境保护科学研究院认可推荐</div>
                   </div>
 
                   <div className="bg-[#0f172a]/50 rounded-lg p-5 border border-[#334155]/50">
                     <h3 className="text-sm font-medium text-emerald-300 mb-3">多物料催化强化热值</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">
-                      将污泥、园林绿化废弃物和催化剂进行科学配比处理，通过多种材料共同催化作用对废弃物和生物质进行高效转化。
-                      经深圳计量检测研究院检测，含1.8%煤矸石的实验组燃烧热值高达<span className="text-emerald-400">2976 cal/g</span>，
-                      污泥热值整体提高<span className="text-emerald-400">36%</span>，可部分替代烟煤使用。
+                      自研催化剂（主要成分：Pb(NO₃)₂ + Er(OTf)₃ + 秘密配方），能迅速将纤维素等植物性材料催化裂解为小分子，
+                      在极短时间内实现完全转化。将污泥、园林绿化废弃物和催化剂进行科学配比，经深圳市计量质量检测研究院检测，
+                      污泥热值提高<span className="text-emerald-400">36%</span>（含1.8%煤矸石实验组燃烧热值高达2976 cal/g），有效代替部分煤的使用。
                     </p>
                   </div>
 
@@ -299,6 +344,7 @@ export default function ProjectZhiHuan() {
             <AnimatedSection delay={0.1}>
               <div className="bg-gradient-to-br from-emerald-500/5 to-cyan-500/5 border border-emerald-500/20 rounded-xl p-6 sm:p-8 mb-8">
                 <h2 className="text-xl font-semibold text-slate-100 mb-4">知识产权</h2>
+                <p className="text-sm text-slate-400 mb-4">团队以第一发明人申请知识产权10项（专利授权6项，参与制定地方行业标准2项）</p>
                 <div className="space-y-3">
                   {patents.map((p, i) => (
                     <div key={i} className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]">

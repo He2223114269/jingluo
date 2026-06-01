@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type PageKey = 'home' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo';
+type PageKey = 'home' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special';
 
 const navItems: { key: PageKey; label: string }[] = [
   { key: 'home', label: '首页' },
@@ -65,7 +65,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 key={item.key}
                 onClick={() => onNavigate(item.key)}
                 className={`px-3 py-1.5 rounded-md text-sm transition-all duration-200 ${
-                  currentPage === item.key
+                  currentPage === item.key || (item.key === 'dashboard' && currentPage.startsWith('monitor-'))
                     ? 'text-cyan-400 bg-cyan-400/10'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                 }`}

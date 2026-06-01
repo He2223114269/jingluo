@@ -5,7 +5,7 @@ import Navbar from '@/components/Navbar';
 import MonitorSidebar from '@/components/MonitorSidebar';
 
 // PageKey 类型定义（与 Navbar 保持一致）
-type PageKey = 'home' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special';
+type PageKey = 'home' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf';
 import Footer from '@/components/Footer';
 import HomePage from '@/views/HomePage';
 import CaseStudyPage from '@/views/CaseStudyPage';
@@ -20,8 +20,9 @@ import MonitorModel from '@/views/MonitorModel';
 import MonitorVolume from '@/views/MonitorVolume';
 import MonitorRating from '@/views/MonitorRating';
 import MonitorSpecial from '@/views/MonitorSpecial';
+import ResearchDNMF from '@/views/ResearchDNMF';
 
-const validPages = ['home', 'case-study', 'projects', 'thinking', 'about', 'dashboard', 'demo', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special'];
+const validPages = ['home', 'case-study', 'projects', 'thinking', 'about', 'dashboard', 'demo', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special', 'research-dnmf'];
 
 function getInitialPage(): PageKey {
   // 服务端渲染时始终返回 'home'，避免 hydration 不匹配
@@ -104,6 +105,8 @@ export default function MainApp() {
         return <MonitorRating />;
       case 'monitor-special':
         return <MonitorSpecial />;
+      case 'research-dnmf':
+        return <ResearchDNMF />;
       default:
         return <HomePage onNavigate={handleNavigate} />;
     }

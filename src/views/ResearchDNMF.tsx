@@ -332,215 +332,302 @@ export default function ResearchDNMF() {
         {/* Tab: Formula */}
         {activeTab === 'formula' && (
           <>
-            {/* 目标函数 */}
-            <AnimatedSection delay={0.1}>
-              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-100 mb-6">目标函数</h2>
-                <p className="text-slate-400 text-sm mb-6">
-                  本算法旨在最小化重构误差的同时，通过超图正则项保持数据的局部几何结构，
-                  并引入约束项提升解的鲁棒性。总目标函数定义如下：
-                </p>
+    {/* 公式样式定义 */}
+            <style>{`
+              .math-box {
+                background: linear-gradient(135deg, rgba(6,182,212,0.03), rgba(139,92,246,0.03));
+                border: 1px solid rgba(51,65,85,0.5);
+                transition: all 0.3s ease;
+              }
+              .math-box:hover {
+                border-color: rgba(6,182,212,0.3);
+                box-shadow: 0 0 30px rgba(6,182,212,0.05);
+              }
+              .math-formula {
+                font-family: 'Times New Roman', 'CMU Serif', Georgia, serif;
+                letter-spacing: 0.02em;
+                line-height: 1.8;
+              }
+              .formula-main {
+                font-size: 1.4rem;
+                padding: 1.5rem 2rem;
+                text-align: center;
+              }
+              .formula-sub {
+                font-size: 1.1rem;
+                padding: 1rem 1.5rem;
+                text-align: center;
+              }
+              .formula-step {
+                background: rgba(15,23,42,0.6);
+                border: 1px solid rgba(51,65,85,0.3);
+                border-radius: 0.75rem;
+                padding: 1rem 1.5rem;
+                transition: all 0.3s ease;
+              }
+              .formula-step:hover {
+                border-color: rgba(6,182,212,0.2);
+                background: rgba(15,23,42,0.8);
+              }
+              .formula-arrow {
+                color: rgba(100,116,139,0.5);
+                font-size: 1.5rem;
+                text-align: center;
+                line-height: 1;
+              }
+            `}</style>
 
-                <div className="bg-[#0f172a]/80 rounded-lg p-6 border border-[#334155] mb-6">
-                  <div className="text-center">
-                    <div className="text-cyan-400 text-lg font-mono mb-3">min L = L<sub>rec</sub> + α · L<sub>hyp</sub> + β · L<sub>reg</sub></div>
-                    <div className="h-px bg-[#334155] mx-8 my-3" />
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm mt-4">
-                      <div className="p-3 rounded-lg bg-slate-800/50">
-                        <div className="text-cyan-400 font-medium mb-1">重构误差项</div>
-                        <div className="font-mono text-slate-300">L<sub>rec</sub> = ‖X − X̂‖²<sub>F</sub></div>
-                        <div className="text-xs text-slate-500 mt-1">保证编码-解码信息的保真度</div>
-                      </div>
-                      <div className="p-3 rounded-lg bg-slate-800/50">
-                        <div className="text-purple-400 font-medium mb-1">超图正则项</div>
-                        <div className="font-mono text-slate-300">L<sub>hyp</sub> = tr(H<sup>T</sup>L<sub>h</sub>H)</div>
-                        <div className="text-xs text-slate-500 mt-1">保持超图结构中的局部几何信息</div>
-                      </div>
-                      <div className="p-3 rounded-lg bg-slate-800/50">
-                        <div className="text-emerald-400 font-medium mb-1">约束正则项</div>
-                        <div className="font-mono text-slate-300">L<sub>reg</sub> = ‖W‖₁</div>
-                        <div className="text-xs text-slate-500 mt-1">L₁范数约束，提升稀疏性与鲁棒性</div>
-                      </div>
-                    </div>
+        {/* 目标函数 */}
+        <AnimatedSection delay={0.1}>
+          <div className="math-box rounded-xl p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-semibold text-slate-100 mb-6">目标函数</h2>
+            <p className="text-slate-400 text-sm mb-6">
+              本算法旨在最小化重构误差的同时，通过超图正则项保持数据的局部几何结构，
+              并引入约束项提升解的鲁棒性。总目标函数定义如下：
+            </p>
+
+            <div className="bg-[#0f172a]/60 rounded-xl p-6 border border-[#334155]/50 mb-6">
+              <div className="math-formula formula-main text-cyan-300">
+                <span className="text-slate-400">min</span> ℒ 
+                <span className="text-slate-400"> = </span>
+                <span className="text-cyan-400">ℒ<sub>rec</sub></span>
+                <span className="text-slate-400"> + </span>
+                <span className="text-slate-300">α</span>
+                <span className="text-slate-400"> · </span>
+                <span className="text-purple-400">ℒ<sub>hyp</sub></span>
+                <span className="text-slate-400"> + </span>
+                <span className="text-slate-300">β</span>
+                <span className="text-slate-400"> · </span>
+                <span className="text-emerald-400">ℒ<sub>reg</sub></span>
+              </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-[#334155] to-transparent mx-4 my-4" />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div className="p-4 rounded-lg bg-slate-800/40 border border-cyan-500/10 hover:border-cyan-500/30 transition-all">
+                  <div className="text-cyan-400 font-medium mb-2 text-center flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400"></span>重构误差项
                   </div>
+                  <div className="math-formula formula-sub text-cyan-300">
+                    ℒ<sub>rec</sub> = ‖<b>X</b> − <b>X̂</b>‖²<sub>F</sub>
+                  </div>
+                  <div className="text-[11px] text-slate-500 text-center mt-2 italic">保证编码-解码信息的重构保真度</div>
                 </div>
-
-                <div className="text-xs text-slate-500">
-                  其中 α &gt; 0 和 β &gt; 0 为正则化超参数，平衡各项贡献。<br />
-                  ‖·‖<sub>F</sub> 表示 Frobenius 范数，tr(·) 表示矩阵的迹。
+                <div className="p-4 rounded-lg bg-slate-800/40 border border-purple-500/10 hover:border-purple-500/30 transition-all">
+                  <div className="text-purple-400 font-medium mb-2 text-center flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-purple-400"></span>超图正则项
+                  </div>
+                  <div className="math-formula formula-sub text-purple-300">
+                    ℒ<sub>hyp</sub> = tr(<b>H</b><sup>T</sup><b>L</b><sub>h</sub><b>H</b>)
+                  </div>
+                  <div className="text-[11px] text-slate-500 text-center mt-2 italic">保持超图结构的局部几何信息</div>
+                </div>
+                <div className="p-4 rounded-lg bg-slate-800/40 border border-emerald-500/10 hover:border-emerald-500/30 transition-all">
+                  <div className="text-emerald-400 font-medium mb-2 text-center flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>约束正则项
+                  </div>
+                  <div className="math-formula formula-sub text-emerald-300">
+                    ℒ<sub>reg</sub> = ‖<b>W</b>‖<sub>1</sub>
+                  </div>
+                  <div className="text-[11px] text-slate-500 text-center mt-2 italic">L₁范数约束，提升稀疏性与鲁棒性</div>
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
 
-            {/* 重构误差项推导 */}
-            <AnimatedSection delay={0.15}>
-              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-100 mb-6">重构误差项推导</h2>
+            <div className="flex flex-wrap gap-4 text-xs text-slate-500 bg-slate-800/20 rounded-lg p-3 border border-[#334155]/30">
+              <span>α &gt; 0, β &gt; 0 — 正则化超参数</span>
+              <span className="text-slate-600">|</span>
+              <span>‖ · ‖<sub>F</sub> — Frobenius 范数</span>
+              <span className="text-slate-600">|</span>
+              <span>tr(·) — 矩阵的迹</span>
+            </div>
+          </div>
+        </AnimatedSection>
 
-                <div className="space-y-6">
-                  {/* Step 1 */}
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center font-medium">1</span>
-                      <span className="text-sm font-medium text-slate-300">编码过程</span>
-                    </div>
-                    <div className="font-mono text-sm text-slate-400 text-center py-2">
-                      H = φ(X · W<sub>e</sub>) = ReLU(X · W<sub>e</sub>)<br />
-                      <span className="text-xs text-slate-600">将原始特征 X 通过编码器权重 W<sub>e</sub> 映射到潜在表示 H</span>
-                    </div>
-                  </div>
+        {/* 重构误差项推导 */}
+        <AnimatedSection delay={0.15}>
+          <div className="math-box rounded-xl p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-semibold text-slate-100 mb-6">重构误差项推导</h2>
 
-                  {/* Step 2 */}
-                  <div className="flex justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#334155"><path d="M12 4v16m0 0l-4-4m4 4l4-4" strokeWidth="2"/></svg>
-                  </div>
+            <div className="space-y-3">
+              {/* Step 1 */}
+              <div className="formula-step">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-7 h-7 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 text-white text-xs flex items-center justify-center font-bold shadow-lg shadow-cyan-500/20">1</span>
+                  <span className="text-sm font-medium text-slate-200">编码过程</span>
+                </div>
+                <div className="math-formula text-sm text-slate-300 text-center py-2 bg-slate-900/40 rounded-lg">
+                  <b>H</b> = φ(<b>X</b> · <b>W</b><sub>e</sub>) = ReLU(<b>X</b> · <b>W</b><sub>e</sub>)
+                </div>
+                <div className="text-[11px] text-slate-600 text-center mt-1">原始特征 <b>X</b> 通过编码器权重 <b>W</b><sub>e</sub> 映射到潜在表示 <b>H</b></div>
+              </div>
 
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center font-medium">2</span>
-                      <span className="text-sm font-medium text-slate-300">深度扩展</span>
-                    </div>
-                    <div className="font-mono text-sm text-slate-400 text-center py-2">
-                      H<sup>(k)</sup> = φ(H<sup>(k-1)</sup> · W<sup>(k)</sup>)<br />
-                      <span className="text-xs text-slate-600">通过多层非线性变换提取深度特征</span>
-                    </div>
-                  </div>
+              <div className="formula-arrow">↓</div>
 
-                  {/* Step 3 */}
-                  <div className="flex justify-center">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#334155"><path d="M12 4v16m0 0l-4-4m4 4l4-4" strokeWidth="2"/></svg>
-                  </div>
+              {/* Step 2 */}
+              <div className="formula-step">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-7 h-7 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 text-white text-xs flex items-center justify-center font-bold shadow-lg shadow-purple-500/20">2</span>
+                  <span className="text-sm font-medium text-slate-200">深度扩展</span>
+                </div>
+                <div className="math-formula text-sm text-slate-300 text-center py-2 bg-slate-900/40 rounded-lg">
+                  <b>H</b><sup>(k)</sup> = φ(<b>H</b><sup>(k−1)</sup> · <b>W</b><sup>(k)</sup>)
+                </div>
+                <div className="text-[11px] text-slate-600 text-center mt-1">通过多层非线性变换提取深层特征表示</div>
+              </div>
 
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 text-xs flex items-center justify-center font-medium">3</span>
-                      <span className="text-sm font-medium text-slate-300">解码重构</span>
-                    </div>
-                    <div className="font-mono text-sm text-slate-400 text-center py-2">
-                      X̂ = ψ(H · W<sub>d</sub>) = H · W<sub>d</sub><br />
-                      <span className="text-xs text-slate-600">通过解码器权重 W<sub>d</sub> 将潜在表示重构为原始空间</span>
-                    </div>
-                  </div>
+              <div className="formula-arrow">↓</div>
 
-                  {/* Divider */}
-                  <div className="h-px bg-[#334155]" />
+              {/* Step 3 */}
+              <div className="formula-step">
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="w-7 h-7 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-xs flex items-center justify-center font-bold shadow-lg shadow-emerald-500/20">3</span>
+                  <span className="text-sm font-medium text-slate-200">解码重构</span>
+                </div>
+                <div className="math-formula text-sm text-slate-300 text-center py-2 bg-slate-900/40 rounded-lg">
+                  <b>X̂</b> = ψ(<b>H</b> · <b>W</b><sub>d</sub>) = <b>H</b> · <b>W</b><sub>d</sub>
+                </div>
+                <div className="text-[11px] text-slate-600 text-center mt-1">通过解码器权重 <b>W</b><sub>d</sub> 将潜在表示重构回原始空间</div>
+              </div>
 
-                  {/* Final */}
-                  <div className="bg-[#0f172a]/80 rounded-lg p-4 border border-[#334155]">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-sm font-medium text-slate-200">重构误差</span>
-                    </div>
-                    <div className="font-mono text-sm text-cyan-400 text-center py-2">
-                      L<sub>rec</sub> = ‖X − X̂‖²<sub>F</sub> = Σ<sub>i,j</sub> (X<sub>ij</sub> − X̂<sub>ij</sub>)²
-                    </div>
-                    <div className="text-xs text-slate-500 text-center mt-1">
-                      Frobenius 范数度量原始矩阵与重构矩阵的差异
-                    </div>
-                  </div>
+              <div className="h-px bg-gradient-to-r from-transparent via-[#334155] to-transparent my-4" />
+
+              {/* Final */}
+              <div className="bg-gradient-to-r from-cyan-500/5 to-blue-500/5 rounded-xl p-5 border border-cyan-500/20">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-sm font-medium text-cyan-300">重构误差</span>
+                </div>
+                <div className="math-formula text-base text-cyan-300 text-center py-3">
+                  ℒ<sub>rec</sub> = ‖<b>X</b> − <b>X̂</b>‖²<sub>F</sub> = Σ<sub>i,j</sub> (<b>X</b><sub>ij</sub> − <b>X̂</b><sub>ij</sub>)²
+                </div>
+                <div className="text-[11px] text-slate-500 text-center mt-1">
+                  Frobenius 范数度量原始矩阵与重构矩阵之间的差异
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
+          </div>
+        </AnimatedSection>
 
-            {/* 超图正则项推导 */}
-            <AnimatedSection delay={0.2}>
-              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-100 mb-6">超图正则项推导</h2>
+        {/* 超图正则项推导 */}
+        <AnimatedSection delay={0.2}>
+          <div className="math-box rounded-xl p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-semibold text-slate-100 mb-6">超图正则项推导</h2>
 
-                <div className="space-y-6">
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="text-sm font-medium text-slate-300 mb-2">超图拉普拉斯矩阵</div>
-                    <div className="font-mono text-sm text-slate-400 text-center py-2">
-                      L<sub>h</sub> = D<sub>v</sub> − A<sub>h</sub>
-                    </div>
-                    <div className="text-xs text-slate-500 mt-1">
-                      其中 D<sub>v</sub> 为顶点度对角矩阵，A<sub>h</sub> 为超图邻接矩阵
-                    </div>
-                  </div>
-
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="text-sm font-medium text-slate-300 mb-2">超图邻接矩阵定义</div>
-                    <div className="font-mono text-sm text-slate-400 text-center py-2">
-                      (A<sub>h</sub>)<sub>ij</sub> = Σ<sub>e∈E</sub> w(e) · h(i,e) · h(j,e) / δ(e)
-                    </div>
-                    <div className="text-xs text-slate-500 mt-1">
-                      超边 e 连接节点 i 和 j 的权重，w(e) 为超边权重，δ(e) 为超边度
-                    </div>
-                  </div>
-
-                  <div className="bg-[#0f172a]/80 rounded-lg p-4 border border-[#334155]">
-                    <div className="text-sm font-medium text-slate-200 mb-2">超图正则项</div>
-                    <div className="font-mono text-sm text-cyan-400 text-center py-2">
-                      L<sub>hyp</sub> = tr(H<sup>T</sup> · L<sub>h</sub> · H) = ½ Σ<sub>i,j</sub> A<sub>ij</sub> ‖h<sub>i</sub> − h<sub>j</sub>‖²
-                    </div>
-                    <div className="text-xs text-slate-500 text-center mt-1">
-                      保持超图结构中相邻节点在潜在空间中距离相近
-                    </div>
-                  </div>
+            <div className="space-y-4">
+              <div className="formula-step">
+                <div className="text-sm font-medium text-purple-300 mb-2 flex items-center gap-2">
+                  <span className="w-5 h-5 rounded bg-purple-500/20 flex items-center justify-center text-[10px]">L</span>
+                  超图拉普拉斯矩阵
+                </div>
+                <div className="math-formula text-sm text-slate-300 text-center py-3 bg-slate-900/40 rounded-lg">
+                  <b>L</b><sub>h</sub> = <b>D</b><sub>v</sub> − <b>A</b><sub>h</sub>
+                </div>
+                <div className="text-[11px] text-slate-600 text-center mt-1">
+                  其中 <b>D</b><sub>v</sub> 为顶点度对角矩阵，<b>A</b><sub>h</sub> 为超图邻接矩阵
                 </div>
               </div>
-            </AnimatedSection>
 
-            {/* 迭代更新规则 */}
-            <AnimatedSection delay={0.25}>
-              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-100 mb-6">迭代更新规则</h2>
-                <p className="text-slate-400 text-sm mb-4">
-                  采用乘法更新策略（Multiplicative Update Rules），在每次迭代中保证目标函数单调不增：
-                </p>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="text-sm font-medium text-purple-400 mb-2">编码器权重更新</div>
-                    <div className="font-mono text-xs sm:text-sm text-slate-400 text-center py-3">
-                      W<sub>e</sub> ← W<sub>e</sub> ⊙ (∇<sup>−</sup>L) / (∇<sup>+</sup>L)
-                    </div>
-                  </div>
-                  <div className="bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                    <div className="text-sm font-medium text-emerald-400 mb-2">解码器权重更新</div>
-                    <div className="font-mono text-xs sm:text-sm text-slate-400 text-center py-3">
-                      W<sub>d</sub> ← W<sub>d</sub> ⊙ (X · H<sup>T</sup>) / (W<sub>d</sub> · H · H<sup>T</sup>)
-                    </div>
-                  </div>
+              <div className="formula-step">
+                <div className="text-sm font-medium text-purple-300 mb-2 flex items-center gap-2">
+                  <span className="w-5 h-5 rounded bg-purple-500/20 flex items-center justify-center text-[10px]">A</span>
+                  超图邻接矩阵定义
                 </div>
-
-                <div className="mt-4 bg-[#0f172a]/50 rounded-lg p-4 border border-[#334155]/50">
-                  <div className="text-sm font-medium text-cyan-400 mb-2">潜在表示更新</div>
-                  <div className="font-mono text-sm text-slate-400 text-center py-2">
-                    H ← H ⊙ (W<sub>d</sub><sup>T</sup> · X + α · A<sub>h</sub> · H) / (W<sub>d</sub><sup>T</sup> · W<sub>d</sub> · H + α · D<sub>v</sub> · H + β · 𝟙)
-                  </div>
-                  <div className="text-xs text-slate-500 text-center mt-1">
-                    ⊙ 表示逐元素乘法，除法为逐元素除法。𝟙 为单位矩阵
-                  </div>
+                <div className="math-formula text-sm text-slate-300 text-center py-3 bg-slate-900/40 rounded-lg">
+                  (<b>A</b><sub>h</sub>)<sub>ij</sub> = Σ<sub>e ∈ E</sub> <b>w</b>(e) · <b>h</b>(i, e) · <b>h</b>(j, e) / δ(e)
                 </div>
-
-                <div className="mt-4 p-4 rounded-lg bg-amber-500/5 border border-amber-500/20">
-                  <div className="text-xs text-amber-400 font-medium mb-1">收敛条件</div>
-                  <div className="text-xs text-slate-400 font-mono">
-                    ‖L<sup>(t+1)</sup> − L<sup>(t)</sup>‖ / ‖L<sup>(t)</sup>‖ &lt; ε &nbsp;或&nbsp; 达到最大迭代次数 T<sub>max</sub>
-                  </div>
+                <div className="text-[11px] text-slate-600 text-center mt-1">
+                  超边 e 连接节点 i 和 j 的权重，w(e) 为超边权重，δ(e) 为超边度
                 </div>
               </div>
-            </AnimatedSection>
 
-            {/* 算法流程 */}
-            <AnimatedSection delay={0.3}>
-              <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-100 mb-4">算法流程</h2>
-                <div className="bg-[#0f172a]/80 rounded-lg p-5 border border-[#334155] font-mono text-xs sm:text-sm text-slate-400 leading-relaxed">
-                  <p><span className="text-emerald-400">输入</span>：原始特征矩阵 X, 超参数 α, β, 隐层维度 k, 最大迭代次数 T</p>
-                  <p><span className="text-emerald-400">输出</span>：编码器权重 W<sub>e</sub>, 解码器权重 W<sub>d</sub>, 潜在表示 H</p>
-                  <p className="mt-3"><span className="text-cyan-400">1:</span> 初始化 W<sub>e</sub>, W<sub>d</sub>, H（随机初始化）</p>
-                  <p><span className="text-cyan-400">2:</span> 构建超图邻接矩阵 A<sub>h</sub> 和度矩阵 D<sub>v</sub></p>
-                  <p><span className="text-cyan-400">3:</span> <span className="text-purple-400">repeat</span></p>
-                  <p><span className="text-cyan-400">4:</span> &nbsp;&nbsp;&nbsp;H ← φ(X · W<sub>e</sub>) &nbsp;▷ 编码</p>
-                  <p><span className="text-cyan-400">5:</span> &nbsp;&nbsp;&nbsp;X̂ ← H · W<sub>d</sub> &nbsp;▷ 解码重构</p>
-                  <p><span className="text-cyan-400">6:</span> &nbsp;&nbsp;&nbsp;更新 W<sub>e</sub>, W<sub>d</sub>, H 按乘法更新规则</p>
-                  <p><span className="text-cyan-400">7:</span> &nbsp;&nbsp;&nbsp;计算 L = ‖X − X̂‖²<sub>F</sub> + α·tr(H<sup>T</sup>L<sub>h</sub>H) + β·‖W‖₁</p>
-                  <p><span className="text-cyan-400">8:</span> <span className="text-purple-400">until</span> 收敛或达到 T<sub>max</sub></p>
-                  <p><span className="text-cyan-400">9:</span> 对 H 进行 K-Means 聚类，得到社区划分结果</p>
+              <div className="bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-xl p-5 border border-purple-500/20">
+                <div className="text-sm font-medium text-purple-300 mb-3 flex items-center gap-2">
+                  <span className="w-5 h-5 rounded bg-purple-500/20 flex items-center justify-center text-[10px]">R</span>
+                  超图正则项
+                </div>
+                <div className="math-formula text-base text-purple-300 text-center py-3">
+                  ℒ<sub>hyp</sub> = tr(<b>H</b><sup>T</sup> · <b>L</b><sub>h</sub> · <b>H</b>) = ½ Σ<sub>i,j</sub> <b>A</b><sub>ij</sub> ‖<b>h</b><sub>i</sub> − <b>h</b><sub>j</sub>‖²
+                </div>
+                <div className="text-[11px] text-slate-500 text-center mt-1">
+                  保持超图结构中相邻节点在潜在空间中的距离相近
                 </div>
               </div>
-            </AnimatedSection>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* 迭代更新规则 */}
+        <AnimatedSection delay={0.25}>
+          <div className="math-box rounded-xl p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-semibold text-slate-100 mb-6">迭代更新规则</h2>
+            <p className="text-slate-400 text-sm mb-4">
+              采用乘法更新策略（Multiplicative Update Rules），在每次迭代中保证目标函数单调不增：
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <div className="formula-step">
+                <div className="text-sm font-medium text-purple-300 mb-2">编码器权重更新</div>
+                <div className="math-formula text-sm text-slate-300 text-center py-3">
+                  <b>W</b><sub>e</sub> ← <b>W</b><sub>e</sub> ⊙ (∇<sup>−</sup>ℒ) / (∇<sup>+</sup>ℒ)
+                </div>
+              </div>
+              <div className="formula-step">
+                <div className="text-sm font-medium text-emerald-300 mb-2">解码器权重更新</div>
+                <div className="math-formula text-sm text-slate-300 text-center py-3">
+                  <b>W</b><sub>d</sub> ← <b>W</b><sub>d</sub> ⊙ (<b>X</b> · <b>H</b><sup>T</sup>) / (<b>W</b><sub>d</sub> · <b>H</b> · <b>H</b><sup>T</sup>)
+                </div>
+              </div>
+            </div>
+
+            <div className="formula-step mb-4">
+              <div className="text-sm font-medium text-cyan-300 mb-2">潜在表示更新</div>
+              <div className="math-formula text-sm text-slate-300 text-center py-3">
+                <b>H</b> ← <b>H</b> ⊙ (<b>W</b><sub>d</sub><sup>T</sup> · <b>X</b> + α · <b>A</b><sub>h</sub> · <b>H</b>) / (<b>W</b><sub>d</sub><sup>T</sup> · <b>W</b><sub>d</sub> · <b>H</b> + α · <b>D</b><sub>v</sub> · <b>H</b> + β · <b>I</b>)
+              </div>
+              <div className="text-[11px] text-slate-500 text-center">
+                ⊙ 表示逐元素乘法，除号为逐元素除法，<b>I</b> 为单位矩阵
+              </div>
+            </div>
+
+            <div className="p-4 rounded-lg bg-gradient-to-r from-amber-500/5 to-orange-500/5 border border-amber-500/20">
+              <div className="text-xs text-amber-400 font-medium mb-2 flex items-center gap-2">
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                收敛条件
+              </div>
+              <div className="math-formula text-xs text-slate-400">
+                ‖ℒ<sup>(t+1)</sup> − ℒ<sup>(t)</sup>‖ / ‖ℒ<sup>(t)</sup>‖ &lt; ε &nbsp; 或 &nbsp; 达到最大迭代次数 T<sub>max</sub>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* 算法流程 */}
+        <AnimatedSection delay={0.3}>
+          <div className="math-box rounded-xl p-6 sm:p-8 mb-8">
+            <h2 className="text-xl font-semibold text-slate-100 mb-4">算法流程</h2>
+            <div className="bg-[#0f172a]/80 rounded-xl p-5 border border-[#334155]/50 font-mono text-xs sm:text-sm text-slate-400 leading-relaxed">
+              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#334155]/30">
+                <span className="text-emerald-400 font-medium">输入</span>
+                <span className="text-slate-600">:</span>
+                <span className="text-slate-300">原始特征矩阵 <b>X</b>, α, β, 隐层维度 k, 最大迭代 T</span>
+              </div>
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#334155]/30">
+                <span className="text-emerald-400 font-medium">输出</span>
+                <span className="text-slate-600">:</span>
+                <span className="text-slate-300"><b>W</b><sub>e</sub>, <b>W</b><sub>d</sub>, <b>H</b></span>
+              </div>
+              <div className="space-y-1.5">
+                <p><span className="text-cyan-400 font-medium">1</span> <span className="text-slate-600">:</span> 初始化 <b>W</b><sub>e</sub>, <b>W</b><sub>d</sub>, <b>H</b>（随机初始化）</p>
+                <p><span className="text-cyan-400 font-medium">2</span> <span className="text-slate-600">:</span> 构建超图邻接矩阵 <b>A</b><sub>h</sub> 和度矩阵 <b>D</b><sub>v</sub></p>
+                <p className="mt-2"><span className="text-purple-400 font-medium">repeat</span></p>
+                <p className="ml-6"><span className="text-cyan-400 font-medium">3</span> <span className="text-slate-600">:</span> <b>H</b> ← φ(<b>X</b> · <b>W</b><sub>e</sub>) &nbsp;<span className="text-slate-600">▷ 编码</span></p>
+                <p className="ml-6"><span className="text-cyan-400 font-medium">4</span> <span className="text-slate-600">:</span> <b>X̂</b> ← <b>H</b> · <b>W</b><sub>d</sub> &nbsp;<span className="text-slate-600">▷ 解码重构</span></p>
+                <p className="ml-6"><span className="text-cyan-400 font-medium">5</span> <span className="text-slate-600">:</span> 按乘法更新规则更新 <b>W</b><sub>e</sub>, <b>W</b><sub>d</sub>, <b>H</b></p>
+                <p className="ml-6"><span className="text-cyan-400 font-medium">6</span> <span className="text-slate-600">:</span> 计算 ℒ = ‖<b>X</b> − <b>X̂</b>‖²<sub>F</sub> + α·tr(<b>H</b><sup>T</sup><b>L</b><sub>h</sub><b>H</b>) + β·‖<b>W</b>‖₁</p>
+                <p className="mt-2"><span className="text-purple-400 font-medium">until</span> 收敛或达到 T<sub>max</sub></p>
+                <p className="mt-3 pt-3 border-t border-[#334155]/30"><span className="text-cyan-400 font-medium">7</span> <span className="text-slate-600">:</span> 对 <b>H</b> 执行 K-Means 聚类，输出社区划分结果</p>
+              </div>
+            </div>
+          </div>
+        </AnimatedSection>
           </>
         )}
 

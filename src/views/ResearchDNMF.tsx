@@ -250,8 +250,8 @@ export default function ResearchDNMF() {
                     </div>
                   </div>
 
-                  <div className="mt-6 text-xs text-slate-500 text-center">
-                    目标函数: min ||X - X̂||² + α·tr(H<sup>T</sup>LH) + β·R(Z) &nbsp;|&nbsp; 超图正则 + 重构误差 + 约束优化
+                  <div className="mt-6 text-xs text-slate-400 text-center math-formula">
+                    ℒ = ‖<b>X</b> − <b>X̂</b>‖²<sub>F</sub> + α · tr(<b>H</b><sup>T</sup><b>L</b><sub>h</sub><b>H</b>) + β · ‖<b>W</b>‖₁
                   </div>
                 </div>
               </div>

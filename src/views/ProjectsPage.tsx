@@ -61,7 +61,7 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                 </div>
-                {(project.id === 'deep-mf' || project.id === 'risk-control-engine') && (
+                {(project.id === 'deep-mf' || project.id === 'zhihuan-ecology') && (
                   <div className="mt-4 pt-4 border-t border-[#334155]/30">
                     <button
                       onClick={() => navigateTo(project.id === 'deep-mf' ? 'research-dnmf' : 'project-zhihuan')}

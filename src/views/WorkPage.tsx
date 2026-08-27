@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import {
   workIdentity,
@@ -13,6 +14,7 @@ import {
 } from '@/data/mock';
 
 export default function WorkPage() {
+  const [openCase, setOpenCase] = useState<string | null>(null);
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
@@ -115,7 +117,7 @@ export default function WorkPage() {
             <div className="text-sm font-semibold text-cyan-400 mb-4">05 核心案例 · CASE STUDIES</div>
             <div className="space-y-8">
               {workCases.map((c) => (
-                <div key={c.no} className="bg-[#1e293b] border border-[#334155] rounded-xl overflow-hidden">
+                <div key={c.no} id={`case-${c.no.toLowerCase().replace(' ', '-')}`} className="bg-[#1e293b] border border-[#334155] rounded-xl overflow-hidden scroll-mt-24">
                   <div className="flex items-center justify-between px-6 py-4 border-b border-[#334155] bg-slate-800/40">
                     <h3 className="text-base font-semibold text-slate-100">
                       <span className="text-cyan-400 text-xs mr-2">{c.no}</span>
@@ -153,6 +155,38 @@ export default function WorkPage() {
                         </div>
                       ))}
                     </div>
+                    {(c as any).contribution && (
+                      <div className="mt-4 bg-slate-800/60 border border-[#334155] rounded-lg p-4">
+                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">我的贡献</div>
+                        <p className="text-sm text-slate-400 leading-relaxed">{(c as any).contribution}</p>
+                      </div>
+                    )}
+                    {(c as any).detail && (
+                      <div className="mt-4">
+                        <button
+                          onClick={() => setOpenCase(openCase === c.no ? null : c.no)}
+                          className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
+                        >
+                          {openCase === c.no ? '收起完整复盘' : '展开完整复盘（业务背景 → 问题发现 → 模型 → 策略 → 上线 → 迭代）'}
+                          <svg
+                            className={`w-3.5 h-3.5 transition-transform ${openCase === c.no ? 'rotate-90' : ''}`}
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                          >
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                        {openCase === c.no && (
+                          <div className="mt-4 space-y-3">
+                            {(c as any).detail.map((d: any, i: number) => (
+                              <div key={i} className="flex gap-4 bg-slate-800/40 rounded-lg p-4">
+                                <span className="text-xs font-semibold text-cyan-400 shrink-0 w-20 pt-0.5">{d.t}</span>
+                                <p className="text-sm text-slate-400 leading-relaxed">{d.c}</p>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -247,9 +281,30 @@ export default function WorkPage() {
               <div className="space-y-6">
                 {workMilestones.map((item, i) => (
                   <div key={i} className="relative pl-16">
-                    <div className="absolute left-4 top-1.5 w-4 h-4 rounded-full bg-[#1e293b] border-2 border-cyan-400 z-10" />
+                    <div
+                      className={`absolute left-4 top-1.5 w-4 h-4 rounded-full z-10 ${
+                        (item as any).stage === 'next'
+                          ? 'bg-cyan-400 border-2 border-cyan-300 animate-pulse'
+                          : 'bg-[#1e293b] border-2 border-cyan-400'
+                      }`}
+                    />
                     <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-5">
-                      <span className="text-xs font-medium text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded">{item.period}</span>
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`text-xs font-medium px-2 py-0.5 rounded ${
+                            (item as any).stage === 'next'
+                              ? 'text-cyan-300 bg-cyan-400/10 border border-cyan-400/30'
+                              : 'text-cyan-400 bg-cyan-400/10'
+                          }`}
+                        >
+                          {item.period}
+                        </span>
+                        {(item as any).stage && (item as any).stage !== 'next' && (
+                          <span className="text-[10px] text-slate-500 border border-[#334155] px-1.5 py-0.5 rounded">
+                            {(item as any).stage}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-sm text-slate-300 mt-2">{item.event}</p>
                     </div>
                   </div>

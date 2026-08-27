@@ -5,9 +5,10 @@ import Navbar from '@/components/Navbar';
 import MonitorSidebar from '@/components/MonitorSidebar';
 
 // PageKey 类型定义（与 Navbar 保持一致）
-type PageKey = 'home' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind';
+type PageKey = 'home' | 'work' | 'case-study' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind';
 import Footer from '@/components/Footer';
 import HomePage from '@/views/HomePage';
+import WorkPage from '@/views/WorkPage';
 import CaseStudyPage from '@/views/CaseStudyPage';
 import ProjectsPage from '@/views/ProjectsPage';
 import ThinkingPage from '@/views/ThinkingPage';
@@ -24,7 +25,7 @@ import ResearchDNMF from '@/views/ResearchDNMF';
 import ProjectZhiHuan from '@/views/ProjectZhiHuan';
 import ProjectEcomind from '@/views/ProjectEcomind';
 
-const validPages = ['home', 'case-study', 'projects', 'thinking', 'about', 'dashboard', 'demo', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special', 'research-dnmf', 'project-zhihuan', 'project-ecomind'];
+const validPages = ['home', 'work', 'case-study', 'projects', 'thinking', 'about', 'dashboard', 'demo', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special', 'research-dnmf', 'project-zhihuan', 'project-ecomind'];
 
 function getInitialPage(): PageKey {
   // 服务端渲染时始终返回 'home'，避免 hydration 不匹配
@@ -83,6 +84,8 @@ export default function MainApp() {
     switch (currentPage) {
       case 'home':
         return <HomePage onNavigate={handleNavigate} />;
+      case 'work':
+        return <WorkPage />;
       case 'case-study':
         return <CaseStudyPage />;
       case 'projects':

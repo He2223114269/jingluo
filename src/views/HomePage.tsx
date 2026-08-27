@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
 import CountUp from '@/components/CountUp';
-import { heroKPIs, capabilities, projects, articles } from '@/data/mock';
+import { heroKPIs, capabilities, projects, articles, workCases } from '@/data/mock';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -102,39 +102,29 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               </button>
             </div>
           </AnimatedSection>
-          <AnimatedSection delay={0.1}>
-            <motion.div
-              whileHover={{ y: -2 }}
-              className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 sm:p-8"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400 mb-1">
-                    <CountUp end={62} suffix="%" prefix="-" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {workCases.map((c, i) => (
+              <AnimatedSection key={i} delay={i * 0.08}>
+                <motion.button
+                  whileHover={{ y: -2, boxShadow: '0 8px 30px rgba(6, 182, 212, 0.06)' }}
+                  onClick={() => onNavigate('work')}
+                  className="w-full text-left bg-[#1e293b] border border-[#334155] rounded-xl p-6 h-full"
+                >
+                  <div className="text-xs text-cyan-400 font-medium mb-2">{c.no}</div>
+                  <h3 className="text-base font-semibold text-slate-100 mb-3">{c.title}</h3>
+                  <p className="text-sm text-slate-400 leading-relaxed mb-4">{c.problem}</p>
+                  <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#334155]">
+                    {c.results.slice(0, 3).map((r, j) => (
+                      <div key={j} className="text-center">
+                        <div className="text-base font-bold text-cyan-400">{r.v}</div>
+                        <div className="text-[10px] text-slate-500 mt-0.5">{r.k}</div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="text-sm text-slate-400">资损率降幅</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400 mb-1">
-                    <CountUp end={3} suffix="轮" />
-                  </div>
-                  <div className="text-sm text-slate-400">模型迭代</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-cyan-400 mb-1">
-                    <CountUp end={21} suffix="%" prefix="+" />
-                  </div>
-                  <div className="text-sm text-slate-400">策略优化提升</div>
-                </div>
-              </div>
-              <div className="mt-6 pt-6 border-t border-[#334155]">
-                <p className="text-slate-400 text-sm leading-relaxed">
-                  通过3轮模型迭代与区域差异化策略优化，将资损率从13%降至5%，同时保持通过率稳定。
-                  项目覆盖8个省份，建立完整的风控监控体系，实现模型与策略的持续迭代优化。
-                </p>
-              </div>
-            </motion.div>
-          </AnimatedSection>
+                </motion.button>
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </section>
 

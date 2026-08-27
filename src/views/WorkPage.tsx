@@ -24,7 +24,7 @@ export default function WorkPage() {
             </div>
             <h1 className="text-3xl sm:text-4xl font-bold text-slate-100 mb-2">{workIdentity.role}</h1>
             <p className="text-cyan-400/80 text-sm mb-4">{workIdentity.company} · {workIdentity.period}</p>
-            <p className="text-slate-400 leading-relaxed max-w-3xl">{workIdentity.summary}</p>
+            <p className="text-slate-400 leading-relaxed max-w-5xl">{workIdentity.summary}</p>
 
             <div className="mt-6 bg-[#1e293b] border border-[#334155] rounded-xl p-6">
               <div className="text-sm font-semibold text-cyan-400 mb-3 flex items-center gap-2">

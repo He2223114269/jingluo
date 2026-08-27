@@ -71,10 +71,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            onClick={() => onNavigate('case-study')}
+            onClick={() => onNavigate('work')}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-sm font-medium hover:bg-cyan-500/25 transition-all duration-200"
           >
-            查看核心案例
+            查看工作介绍
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
               <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
             </svg>
@@ -89,10 +89,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <h2 className="text-2xl font-bold text-slate-100">核心案例</h2>
-                <p className="text-slate-400 text-sm mt-1">风控模型迭代项目</p>
+                <p className="text-slate-400 text-sm mt-1">真实生产环境的完整案例复盘</p>
               </div>
               <button
-                onClick={() => onNavigate('case-study')}
+                onClick={() => onNavigate('work')}
                 className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
               >
                 查看详情

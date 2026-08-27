@@ -103,7 +103,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {workCases.map((c, i) => (
+            {[workCases[0], workCases[2], workCases[3]].map((c, i) => (
               <AnimatedSection key={i} delay={i * 0.08}>
                 <motion.button
                   whileHover={{ y: -2, boxShadow: '0 8px 30px rgba(6, 182, 212, 0.06)' }}

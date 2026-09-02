@@ -116,10 +116,10 @@ export default function AboutPage() {
                   </div>
                   <p className="text-sm text-slate-400 leading-relaxed mt-3">{rp.description}</p>
                   <p className="text-sm text-cyan-400/80 mt-3">→ {rp.result}</p>
-                  {(rp as any).link && (
+                  {'link' in rp && rp.link && (
                     <button
                       onClick={() => {
-                        window.location.hash = (rp as any).link;
+                        window.location.hash = rp.link;
                         window.dispatchEvent(new Event('hashchange'));
                       }}
                       className="mt-3 inline-flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300 transition-colors"

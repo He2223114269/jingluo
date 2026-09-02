@@ -53,11 +53,11 @@ export default function ProjectsPage() {
                   <div className="sm:w-48 flex flex-row sm:flex-col gap-3">
                     <div className="flex-1 p-3 rounded-lg bg-slate-800/50 text-center">
                       <div className="text-xs text-slate-500 mb-1">项目周期</div>
-                      <div className="text-sm font-medium text-slate-300">{(project as any).duration || '6个月'}</div>
+                      <div className="text-sm font-medium text-slate-300">{project.duration || '6个月'}</div>
                     </div>
                     <div className="flex-1 p-3 rounded-lg bg-slate-800/50 text-center">
                       <div className="text-xs text-slate-500 mb-1">团队规模</div>
-                      <div className="text-sm font-medium text-slate-300">{(project as any).teamSize || '3-5人'}</div>
+                      <div className="text-sm font-medium text-slate-300">{project.teamSize || '3-5人'}</div>
                     </div>
                   </div>
                 </div>

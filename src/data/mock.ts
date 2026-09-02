@@ -1,5 +1,40 @@
 // Mock data for the Risk Control Engineer Portfolio
 
+export interface ProjectItem {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  status: string;
+  teamSize?: string;
+  duration?: string;
+}
+
+export interface CaseDetail {
+  t: string;
+  c: string;
+}
+
+export interface WorkCase {
+  no: string;
+  title: string;
+  problem: string;
+  locate: string;
+  model: string;
+  strategy: string;
+  verify: string;
+  results: { k: string; v: string }[];
+  contribution?: string;
+  detail?: CaseDetail[];
+}
+
+export interface MilestoneItem {
+  period: string;
+  event: string;
+  stage?: string;
+}
+
+
 export const heroKPIs = [
   { label: '通过率监控覆盖', value: '11省', trend: 'up' as const, description: '每日自动化监控推送' },
   { label: '竞赛获奖', value: '国家级4项', trend: 'up' as const, description: '互联网+、节能减排等' },
@@ -33,7 +68,7 @@ export const capabilities = [
   },
 ];
 
-export const projects = [
+export const projects: ProjectItem[] = [
   {
     id: 'risk-control-engine',
     title: '风控决策分析平台',
@@ -283,7 +318,7 @@ export const aboutData = {
 // ============ 工作介绍页数据 ============
 export const workIdentity = {
   role: '风控建模算法工程师',
-  company: '消费金融公司',
+  company: '长沙淘顺信息科技有限公司',
   period: '2024.11 - 至今',
   title: '消费金融实时授信风控',
   summary:
@@ -292,7 +327,7 @@ export const workIdentity = {
 
 export const workScale = [
   { value: '11+', label: '业务省份', desc: '多省份实时授信覆盖' },
-  { value: '3000+', label: '日均授信订单', desc: '实时决策，秒级响应' },
+  { value: '3000+', label: '日均授信订单', desc: '贷前准入，秒级响应' },
   { value: '7亿+', label: '累计放款规模', desc: '真实生产环境积累' },
   { value: '实时', label: '授信决策', desc: '贷前准入全链路' },
 ];
@@ -323,7 +358,7 @@ export const workFlow = [
   '策略迭代',
 ];
 
-export const workCases = [
+export const workCases: WorkCase[] = [
   {
     no: 'Case 01',
     title: '风控模型与策略迭代',
@@ -337,7 +372,7 @@ export const workCases = [
       { k: '通过率', v: '保持稳定' },
       { k: '模型迭代', v: '3 轮' },
     ],
-    contribution: '独立完成模型迭代与策略设计，主导数据分析与问题定位；与业务团队协作完成上线验证与监控。（[待确认]）',
+    contribution: '独立完成模型迭代与策略设计，主导数据分析与问题定位；与业务团队协作完成上线验证与监控。',
     detail: [
       { t: '业务背景', c: '实时授信业务资损率长期处于 13% 高位，远超可接受水平，需要系统性压降风险。' },
       { t: '问题发现', c: '通过 Vintage 曲线与风险率变化发现指标恶化；通过率与风险率失衡；客群/区域/套餐间差异显著。' },
@@ -363,7 +398,7 @@ export const workCases = [
       { k: '通过率', v: '56.4% → 39.4%' },
       { k: '放款客群资损', v: '8.59% → 4.8%' },
     ],
-    contribution: '独立主导评级体系设计与省份模拟，与数据/研发协作完成批量推送与生产验证。（[待确认]）',
+    contribution: '独立主导评级体系设计与省份模拟，与数据/研发协作完成批量推送与生产验证。',
   },
   {
     no: 'Case 03',
@@ -378,7 +413,7 @@ export const workCases = [
       { k: '异常发现', v: 'T+0 当天' },
       { k: '月度调控', v: '常态化执行' },
     ],
-    contribution: '独立完成监控体系从需求到落地全流程（脚本/推送/报告/调控机制）。（[待确认]）',
+    contribution: '独立完成监控体系从需求到落地全流程（脚本/推送/报告/调控机制）。',
   },
   {
     no: 'Case 04',
@@ -393,7 +428,7 @@ export const workCases = [
       { k: '预测方法', v: '4 种平行' },
       { k: '终损目标', v: '5.00% 内' },
     ],
-    contribution: '独立完成 Vintage 分析方法论与预测模型，特批失真根因定位。（[待确认]）',
+    contribution: '独立完成 Vintage 分析方法论与预测模型，特批失真根因定位。',
   },
   {
     no: 'Case 05',
@@ -408,7 +443,7 @@ export const workCases = [
       { k: '逾期率', v: '融合 2.8% vs 单卡 5.9%' },
       { k: '风险倍数', v: '单卡为融合 2.1 倍' },
     ],
-    contribution: '独立完成套餐/客群差异分析并输出策略依据。（[待确认]）',
+    contribution: '独立完成套餐/客群差异分析并输出策略依据。',
   },
 ];
 
@@ -439,7 +474,7 @@ export const workCapability = {
   research: ['图学习 / NMF', '深度学习', '超图算法'],
 };
 
-export const workMilestones = [
+export const workMilestones: MilestoneItem[] = [
   { period: '2023', event: '校园算法研究：DNMF 社区发现算法，授权发明专利（超图正则化）', stage: '校园' },
   { period: '2024.11', event: '进入消费金融风控领域，独立负责实时授信业务风控模型搭建与策略制定', stage: '职场' },
   { period: '2025', event: '搭建通过率自动化监控体系（11省），建立客群质态分析框架与 Vintage 资损预测方法论' },

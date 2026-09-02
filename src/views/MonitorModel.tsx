@@ -71,7 +71,7 @@ function riskSegmentOption() {
     xAxis: { type: 'category', data: riskSegmentBadRate.segments },
     yAxis: [{ type: 'value', splitLine: { lineStyle: { color: '#1e293b' } } }, { type: 'value', splitLine: { show: false } }],
     series: [
-      { name: '坏账率(%)', type: 'bar', data: riskSegmentBadRate.badRates, itemStyle: { color: (p: any) => ['#10b981','#06b6d4','#f59e0b','#f97316','#ef4444'][p.dataIndex] || '#06b6d4', borderRadius: [3, 3, 0, 0] }, barWidth: '40%' },
+      { name: '坏账率(%)', type: 'bar', data: riskSegmentBadRate.badRates, itemStyle: { color: (p: { dataIndex: number }) => ['#10b981','#06b6d4','#f59e0b','#f97316','#ef4444'][p.dataIndex] || '#06b6d4', borderRadius: [3, 3, 0, 0] }, barWidth: '40%' },
       { name: '占比(%)', type: 'line', yAxisIndex: 1, data: riskSegmentBadRate.proportions, smooth: true, lineStyle: { color: '#8b5cf6', width: 2 }, symbol: 'circle', symbolSize: 6 },
     ],
   };
@@ -87,7 +87,7 @@ export default function MonitorModel() {
           <div className="flex items-center gap-4 mb-8">
             <button onClick={goBack} className="px-3 py-1.5 rounded-lg bg-[#1e293b] border border-[#334155] text-slate-400 hover:text-slate-200 text-sm transition-all">&larr; 返回概览</button>
             <h1 className="text-2xl font-bold text-slate-100">模型监控</h1>
-            <span className="text-xs text-slate-500">Mock 数据</span>
+            <span className="text-xs text-slate-500">示例监控数据</span>
           </div>
         </AnimatedSection>
 

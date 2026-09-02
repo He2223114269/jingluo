@@ -155,13 +155,13 @@ export default function WorkPage() {
                         </div>
                       ))}
                     </div>
-                    {(c as any).contribution && (
+                    {c.contribution && (
                       <div className="mt-4 bg-slate-800/60 border border-[#334155] rounded-lg p-4">
                         <div className="text-xs font-semibold text-cyan-400 mb-1.5">我的贡献</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{(c as any).contribution}</p>
+                        <p className="text-sm text-slate-400 leading-relaxed">{c.contribution}</p>
                       </div>
                     )}
-                    {(c as any).detail && (
+                    {c.detail && (
                       <div className="mt-4">
                         <button
                           onClick={() => setOpenCase(openCase === c.no ? null : c.no)}
@@ -177,7 +177,7 @@ export default function WorkPage() {
                         </button>
                         {openCase === c.no && (
                           <div className="mt-4 space-y-3">
-                            {(c as any).detail.map((d: any, i: number) => (
+                            {c.detail.map((d, i) => (
                               <div key={i} className="flex gap-4 bg-slate-800/40 rounded-lg p-4">
                                 <span className="text-xs font-semibold text-cyan-400 shrink-0 w-20 pt-0.5">{d.t}</span>
                                 <p className="text-sm text-slate-400 leading-relaxed">{d.c}</p>
@@ -283,7 +283,7 @@ export default function WorkPage() {
                   <div key={i} className="relative pl-16">
                     <div
                       className={`absolute left-4 top-1.5 w-4 h-4 rounded-full z-10 ${
-                        (item as any).stage === 'next'
+                        item.stage === 'next'
                           ? 'bg-cyan-400 border-2 border-cyan-300 animate-pulse'
                           : 'bg-[#1e293b] border-2 border-cyan-400'
                       }`}
@@ -292,16 +292,16 @@ export default function WorkPage() {
                       <div className="flex items-center gap-2">
                         <span
                           className={`text-xs font-medium px-2 py-0.5 rounded ${
-                            (item as any).stage === 'next'
+                            item.stage === 'next'
                               ? 'text-cyan-300 bg-cyan-400/10 border border-cyan-400/30'
                               : 'text-cyan-400 bg-cyan-400/10'
                           }`}
                         >
                           {item.period}
                         </span>
-                        {(item as any).stage && (item as any).stage !== 'next' && (
+                        {item.stage && item.stage !== 'next' && (
                           <span className="text-[10px] text-slate-500 border border-[#334155] px-1.5 py-0.5 rounded">
-                            {(item as any).stage}
+                            {item.stage}
                           </span>
                         )}
                       </div>

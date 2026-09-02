@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
-import CountUp from '@/components/CountUp';
 import { heroKPIs, capabilities, projects, articles, workCases } from '@/data/mock';
 
 interface HomePageProps {
@@ -42,7 +41,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-3xl mx-auto mb-12"
           >
-            {heroKPIs.map((kpi, i) => (
+            {heroKPIs.map((kpi, i) => {
+              const beforeAfter = kpi as { before?: string; after?: string };
+              return (
               <motion.div
                 key={i}
                 whileHover={{ y: -2, boxShadow: '0 8px 30px rgba(6, 182, 212, 0.08)' }}
@@ -51,11 +52,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               >
                 <div className="text-sm text-slate-400 mb-2">{kpi.label}</div>
                 <div className="text-2xl font-bold text-slate-100">
-                  {kpi.before && kpi.after ? (
+                  {beforeAfter.before && beforeAfter.after ? (
                     <span>
-                      <span className="text-red-400/70">{kpi.before}</span>
+                      <span className="text-red-400/70">{beforeAfter.before}</span>
                       <span className="text-slate-500 mx-2">→</span>
-                      <span className="text-cyan-400">{kpi.after}</span>
+                      <span className="text-cyan-400">{beforeAfter.after}</span>
                     </span>
                   ) : (
                     <span className="text-cyan-400">{kpi.value}</span>
@@ -63,7 +64,8 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 </div>
                 <div className="text-xs text-slate-500 mt-1">{kpi.description}</div>
               </motion.div>
-            ))}
+              );
+            })}
           </motion.div>
 
           {/* CTA Button */}

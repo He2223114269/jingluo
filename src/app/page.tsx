@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Navbar from '@/components/Navbar';
-import MonitorSidebar from '@/components/MonitorSidebar';
+import MonitorSidebar, { type MonitorPage } from '@/components/MonitorSidebar';
 
 // PageKey 类型定义（与 Navbar 保持一致）
 type PageKey = 'home' | 'work' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind';
@@ -39,23 +39,22 @@ function getInitialPage(): PageKey {
 }
 
 // 判断当前是否在监控面板区域
-function isMonitorPage(page: PageKey): boolean {
+function isMonitorPage(page: PageKey): page is MonitorPage {
   return page === 'dashboard' || page.startsWith('monitor-');
 }
 
 export default function MainApp() {
   const [currentPage, setCurrentPage] = useState<PageKey>('home');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [initialized, setInitialized] = useState(false);
 
-  // 只在客户端初始化时读取 hash
+  // 首帧后读取 hash，既避免 hydration mismatch，也避开 effect 内同步 setState
   useEffect(() => {
-    if (!initialized) {
-      setInitialized(true);
+    const frameId = window.requestAnimationFrame(() => {
       const page = getInitialPage();
       if (page !== 'home') setCurrentPage(page);
-    }
-  }, [initialized]);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
 
   const handleNavigate = useCallback((page: string) => {
     setCurrentPage(page as PageKey);
@@ -64,7 +63,9 @@ export default function MainApp() {
 
   // Update hash on page change
   useEffect(() => {
-    window.location.hash = currentPage;
+    if (window.location.hash.slice(1) !== currentPage) {
+      window.location.hash = currentPage;
+    }
   }, [currentPage]);
 
   // Listen for hash changes (browser back/forward)
@@ -118,21 +119,21 @@ export default function MainApp() {
     }
   };
 
-  const showMonitor = isMonitorPage(currentPage);
+  const monitorPage = isMonitorPage(currentPage) ? currentPage : null;
 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       <div className="flex flex-1">
-        {showMonitor && (
+        {monitorPage && (
           <MonitorSidebar
-            currentPage={currentPage}
+            currentPage={monitorPage}
             collapsed={sidebarCollapsed}
             onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
             onNavigate={handleNavigate}
           />
         )}
-        <main className={`flex-1 transition-all duration-300 ${showMonitor ? (sidebarCollapsed ? 'ml-16' : 'ml-56') : ''}`}>
+        <main className={`flex-1 transition-all duration-300 ${monitorPage ? (sidebarCollapsed ? 'ml-16' : 'ml-56') : ''}`}>
           {renderPage()}
         </main>
       </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 
 const techFeatures = [

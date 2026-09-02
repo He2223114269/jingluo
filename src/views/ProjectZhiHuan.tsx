@@ -1,5 +1,7 @@
 'use client';
 
+import type { ReactElement } from 'react';
+
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 
@@ -39,7 +41,7 @@ const awards = [
 ];
 
 function Icon({ name, className = 'w-5 h-5' }: { name: string; className?: string }) {
-  const icons: Record<string, JSX.Element> = {
+  const icons: Record<string, ReactElement> = {
     vacuum: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>,
     flame: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z"/></svg>,
     recycle: <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>,
@@ -118,7 +120,7 @@ export default function ProjectZhiHuan() {
                   研发四大核心技术，设计一体化污泥燃料制备设备，实现污泥资源化利用。
                 </p>
                 <p className="text-slate-300 leading-relaxed">
-                  国家政策要求到2025年污泥无害化处置率达90%以上。在此背景下，智环生态项目构建"污水厂→污泥处理→水泥厂"
+                  国家政策要求到2025年污泥无害化处置率达90%以上。在此背景下，智环生态项目构建“污水厂→污泥处理→水泥厂”
                   创新链路，将污泥制成再生燃料替代煤炭，燃烧后CO₂排放仅为等量煤炭的5%。
                 </p>
               </div>
@@ -157,7 +159,7 @@ export default function ProjectZhiHuan() {
                     <h3 className="text-lg font-medium text-slate-100">核心优势</h3>
                   </div>
                   <ul className="space-y-3 text-sm text-slate-400">
-                    <li className="flex gap-2"><span className="text-emerald-400 shrink-0">✦</span><span>处理模式国内领先——"污水厂—污泥处理—水泥厂"便捷通道，上下游均已签订战略意向合同</span></li>
+                    <li className="flex gap-2"><span className="text-emerald-400 shrink-0">✦</span><span>处理模式国内领先——“污水厂—污泥处理—水泥厂”便捷通道，上下游均已签订战略意向合同</span></li>
                     <li className="flex gap-2"><span className="text-emerald-400 shrink-0">✦</span><span>污泥脱水技术国内领先——低温真空一体化干化设备，低能耗高效率，将含水率80%降至30%以下</span></li>
                     <li className="flex gap-2"><span className="text-emerald-400 shrink-0">✦</span><span>多物料催化强化热值——污泥热值提高36%，有效代替部分煤的使用</span></li>
                     <li className="flex gap-2"><span className="text-emerald-400 shrink-0">✦</span><span>全自动化设备，减少人工成本，符合市场发展趋势</span></li>
@@ -245,7 +247,7 @@ export default function ProjectZhiHuan() {
                   <div className="bg-[#0f172a]/50 rounded-lg p-5 border border-[#334155]/50">
                     <h3 className="text-sm font-medium text-cyan-300 mb-3">一体化低温真空干燥设备</h3>
                     <p className="text-sm text-slate-400 leading-relaxed">
-                      采用"仿生原理+重力过滤+挤压+低温干燥极限真空"的复合脱水设计，效率高、占地小、安装简便。
+                      采用“仿生原理+重力过滤+挤压+低温干燥极限真空”的复合脱水设计，效率高、占地小、安装简便。
                       利用真空泵形成负压环境降低水的沸点，污泥中的水分在低温下蒸发，热能利用效率达90%以上。
                       内置搅拌系统防止结块，一次性将含水率从80%降至30%以下，体积缩减为原来的1/3。
                     </p>

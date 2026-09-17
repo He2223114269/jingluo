@@ -70,6 +70,15 @@ export const capabilities = [
 
 export const projects: ProjectItem[] = [
   {
+    id: 'loss-audit',
+    title: '24 省模型迁移资损评估：口径审计与修正',
+    description: '在 24 省模型迁移的资损评估中，发现并修正一个「结果自洽、公式正确、但结论完全错误」的系统性低估（小样本零逾期）；并识别出 5 个省的评级映射异常，避免用失真数据做分批上线决策。',
+    tags: ['数据审计', '口径治理', '贝叶斯收缩', 'SQL / StarRocks'],
+    status: '已完成',
+    teamSize: '独立完成',
+    duration: '2026.09',
+  },
+  {
     id: 'risk-control-engine',
     title: '风控决策分析平台',
     description: '搭建完整的风控决策分析平台（GitHub开源），实现从数据采集、策略分析、评分卡建模到可视化看板的全链路，覆盖订单全生命周期监控。',

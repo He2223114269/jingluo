@@ -61,11 +61,12 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                 </div>
-                {(project.id === 'deep-mf' || project.id === 'zhihuan-ecology' || project.id === 'ecomind') && (
+                {(project.id === 'loss-audit' || project.id === 'deep-mf' || project.id === 'zhihuan-ecology' || project.id === 'ecomind') && (
                   <div className="mt-4 pt-4 border-t border-[#334155]/30">
                     <button
                       onClick={() => {
                           const map: Record<string, string> = {
+                            'loss-audit': 'case-loss-audit',
                             'deep-mf': 'research-dnmf',
                             'zhihuan-ecology': 'project-zhihuan',
                             'ecomind': 'project-ecomind',

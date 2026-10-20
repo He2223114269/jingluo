@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
+import DetailDisclosure from '@/components/DetailDisclosure';
+import { ScoreLineDiagram, MigrationTimeline, FraudFlow } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
   workScale,
@@ -107,6 +109,17 @@ export default function WorkPage() {
                   </div>
                 ))}
               </div>
+
+              <DetailDisclosure hint="展开：通过率到底怎么决定（分数线机制）">
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  配置的通过率不是「按比例抽签」，而是映射成一条模型分值的分数线。用户评分越过这条线即通过。
+                  所以同一套配置，落在不同客群上，实际通过率会不同；调通过率的本质是移动分数线，效果取决于该客群在分值分布上的密度。
+                </p>
+                <ScoreLineDiagram />
+                <p className="text-sm text-slate-400 leading-relaxed">
+                  这也是为什么调整方案必须先看分支质态与分值分布，而不能用「提高 10 个百分点就多过 10%」做线性推算。
+                </p>
+              </DetailDisclosure>
             </div>
           </div>
         </AnimatedSection>
@@ -160,6 +173,25 @@ export default function WorkPage() {
                         <div className="text-xs font-semibold text-cyan-400 mb-1.5">我的贡献</div>
                         <p className="text-sm text-slate-400 leading-relaxed">{c.contribution}</p>
                       </div>
+                    )}
+                    {c.no === 'Case 01' && (
+                      <DetailDisclosure hint="展开：24 省 4 批迁移怎么控风险">
+                        <MigrationTimeline />
+                        <ul className="space-y-2 text-sm text-slate-400 leading-relaxed">
+                          <li>• 先定档再动配置：客群模拟给出各省分支的目标通过率，避免上线后再来回调。</li>
+                          <li>• 每批切换后回读生产配置，核对值、行数与时间字段；异常批次停止推进。</li>
+                          <li>• 切后跟踪通过率与质态，对偏离标准的分支单独排查，不整体回滚。</li>
+                        </ul>
+                      </DetailDisclosure>
+                    )}
+                    {c.no === 'Case 03' && (
+                      <DetailDisclosure hint="展开：门店欺诈怎么从特征走到处置">
+                        <FraudFlow />
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          特征不是一次性规则，而是固化成每日扫描：命中 2 条进人工核查，命中 3 条直接熔断；
+                          门店处置后在监控里持续跟踪其新增进件与逾期变化。
+                        </p>
+                      </DetailDisclosure>
                     )}
                     {c.detail && (
                       <div className="mt-4">

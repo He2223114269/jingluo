@@ -64,15 +64,28 @@ export default function WorkPage() {
         <AnimatedSection>
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">02 业务规模 · BUSINESS SCALE</div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               {workScale.map((s, i) => (
-                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-5 text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-cyan-400">{s.value}</div>
+                <div
+                  key={i}
+                  className={`bg-[#1e293b] border rounded-xl p-5 text-center ${
+                    (s as { primary?: boolean }).primary
+                      ? 'border-cyan-400/40 lg:col-span-3 bg-cyan-400/[0.04]'
+                      : 'border-[#334155]'
+                  }`}
+                >
+                  <div className={`${(s as { primary?: boolean }).primary ? 'text-4xl sm:text-5xl' : 'text-2xl sm:text-3xl'} font-bold text-cyan-400`}>
+                    {s.value}
+                  </div>
                   <div className="text-sm text-slate-200 mt-2">{s.label}</div>
                   <div className="text-xs text-slate-500 mt-1">{s.desc}</div>
                 </div>
               ))}
             </div>
+            <p className="text-xs text-slate-500 mt-3">
+              口径：淘顺实时授信业务，2024-11-04 起，订单维度；数据截至 2026-09-23（业务停流前）。
+              门店 / 代理商为用户实际成交的渠道口径，非签约总量。
+            </p>
           </div>
         </AnimatedSection>
 

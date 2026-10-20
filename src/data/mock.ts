@@ -335,10 +335,12 @@ export const workIdentity = {
 };
 
 export const workScale = [
+  { value: '22.02 亿', label: '累计管理放款', desc: '2024-11 入职起 · 竣工口径', primary: true },
   { value: '30 省', label: '业务覆盖', desc: '实时授信业务覆盖' },
-  { value: '3,000+', label: '日均授信订单', desc: '贷前准入，秒级响应' },
-  { value: '22 亿+', label: '累计管理放款', desc: '2024-11 入职起' },
-  { value: '24 省', label: '分批迁移上线', desc: '2026-09 分 4 批上线' },
+  { value: '2,200 单', label: '日均授信订单', desc: '近 90 天约 2,000 单，峰值 3,000+' },
+  { value: '34,110 家', label: '服务门店', desc: '2024-11 起累计' },
+  { value: '26,891 家', label: '合作代理商', desc: '2024-11 起累计' },
+  { value: '151 万', label: '累计服务用户', desc: '按身份证去重' },
 ];
 
 export const workDuties = [

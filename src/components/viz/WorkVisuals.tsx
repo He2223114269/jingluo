@@ -245,3 +245,74 @@ export function BusinessChain() {
     </div>
   );
 }
+
+/* 业务规模明细：时间 / 地区 / 客群 / 三个结构事实 */
+export function ScaleDetail({ data }: { data: {
+  monthly: { ym: string; amt: number }[];
+  provinces: { name: string; pct: number }[];
+  segments: { name: string; pct: number }[];
+  facts: { k: string; v: string }[];
+} }) {
+  const max = Math.max(...data.monthly.map((m) => m.amt));
+  return (
+    <div className="space-y-4">
+      <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-xs text-slate-400">月度放款（亿元）</span>
+          <span className="text-[10px] text-slate-500">2024-11 → 2026-09</span>
+        </div>
+        <div className="flex items-end gap-1 h-28">
+          {data.monthly.map((m) => (
+            <div key={m.ym} className="relative flex-1 h-full flex items-end group">
+              <div
+                className="w-full rounded-t bg-cyan-400/70 group-hover:bg-cyan-300 transition-colors"
+                style={{ height: `${(m.amt / max) * 100}%` }}
+              />
+              <div className="pointer-events-none absolute bottom-full mb-1 left-1/2 -translate-x-1/2 whitespace-nowrap rounded bg-slate-900/95 border border-[#334155] px-1.5 py-0.5 text-[10px] text-slate-300 opacity-0 group-hover:opacity-100 z-20">
+                {m.ym} · {m.amt.toFixed(2)} 亿
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="flex justify-between text-[10px] text-slate-500 mt-2">
+          <span>2024-11 · 1.05</span>
+          <span>峰值 2026-02 · 1.68</span>
+          <span>2026-09 · 0.60</span>
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        {[{ title: '省份构成（按放款额）', rows: data.provinces }, { title: '客群构成（按订单量）', rows: data.segments }].map((g) => (
+          <div key={g.title} className="bg-slate-800/40 border border-[#334155] rounded-lg p-4">
+            <div className="text-xs text-slate-400 mb-3">{g.title}</div>
+            <div className="space-y-2">
+              {g.rows.map((r) => (
+                <div key={r.name}>
+                  <div className="flex justify-between text-[11px] mb-1">
+                    <span className="text-slate-300">{r.name}</span>
+                    <span className="text-slate-400">{r.pct.toFixed(1)}%</span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-slate-900/60">
+                    <div className="h-1.5 rounded-full bg-cyan-400/70" style={{ width: `${r.pct}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-3 gap-3">
+        {data.facts.map((f) => (
+          <div key={f.k} className="rounded-lg border border-[#334155] bg-slate-900/30 p-3 text-center">
+            <div className="text-sm font-semibold text-cyan-300">{f.v}</div>
+            <div className="text-[11px] text-slate-500 mt-1">{f.k}</div>
+          </div>
+        ))}
+      </div>
+      <p className="text-[11px] text-slate-500 leading-relaxed">
+        省份占比按放款金额统计（与按订单量的口径略有差异）；客群按订单量统计。金额为订单金额合计，含已结清订单。
+      </p>
+    </div>
+  );
+}

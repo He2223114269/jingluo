@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
-import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain } from '@/components/viz/WorkVisuals';
+import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
   workScale,
+  scaleDetail,
   workDuties,
   workFlow,
   workCases,

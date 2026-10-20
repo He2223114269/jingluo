@@ -4,9 +4,11 @@ import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain } from '@/components/viz/WorkVisuals';
+import { ProvinceBoard, SegmentBoard } from '@/components/viz/ScaleBoard';
 import {
   workIdentity,
   workScale,
+  scaleDistribution,
   workDuties,
   workFlow,
   workCases,
@@ -82,10 +84,28 @@ export default function WorkPage() {
                 </div>
               ))}
             </div>
-            <p className="text-xs text-slate-500 mt-3">
-              口径：淘顺实时授信业务，2024-11-04 起，订单维度；数据截至 2026-09-23（业务停流前）。
-              门店 / 代理商为用户实际成交的渠道口径，非签约总量。
-            </p>
+            <div className="grid lg:grid-cols-2 gap-4 mt-4">
+              <ProvinceBoard rows={scaleDistribution.provinces} total={scaleDistribution.totalOrders} />
+              <SegmentBoard segments={scaleDistribution.segments} channels={scaleDistribution.channels} />
+            </div>
+            <div className="mt-4 rounded-lg border border-[#334155]/70 bg-slate-900/20 p-4 space-y-1.5">
+              <div className="text-[11px] font-semibold text-slate-400 mb-1">口径说明（差异都在这里）</div>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                · 累计放款 22.02 亿 = 订单金额合计，含已结清订单；<span className="text-slate-400">不是</span>在贷余额。
+              </p>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                · 订单 151.5 万笔、用户 151.3 万人（按身份证去重），人均约 1.0 单。
+              </p>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                · 省份按订单发生地统计，实际有订单 29 省；「30 省」为业务开通口径，含暂未放款省份。
+              </p>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                · 门店 3.4 万家 / 代理商 2.7 万家为实际成交渠道，非签约总量；日均 2,200 单为全周期均值，近 90 天约 2,000 单。
+              </p>
+              <p className="text-[11px] text-slate-500 leading-relaxed">
+                · 数据截至 2026-09-23（业务停流前），订单维度，未做金额四舍五入以外的加工。
+              </p>
+            </div>
           </div>
         </AnimatedSection>
 

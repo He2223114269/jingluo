@@ -343,6 +343,31 @@ export const workScale = [
   { value: '151 万', label: '累计服务用户', desc: '按身份证去重' },
 ];
 
+
+export const scaleDistribution = {
+  totalOrders: 1515269,
+  provinces: [
+    { name: '湖南省', orders: 1060911 },
+    { name: '贵州省', orders: 199022 },
+    { name: '江西省', orders: 97918 },
+    { name: '广西', orders: 44018 },
+    { name: '甘肃省', orders: 34776 },
+    { name: '安徽省', orders: 24208 },
+    { name: '海南省', orders: 21226 },
+    { name: '其他 22 省', orders: 33190 },
+  ],
+  segments: [
+    { name: '存量 VIP', orders: 733651 },
+    { name: '公众', orders: 439156 },
+    { name: 'VIP', orders: 342462 },
+  ],
+  channels: [
+    { name: '普通进件', orders: 1492048 },
+    { name: '特批白名单', orders: 21510 },
+    { name: '保证金', orders: 1675 },
+  ],
+};
+
 export const workDuties = [
   { title: '准入规则与策略树', desc: '3 层 20+ 节点分层策略设计' },
   { title: '信用评分建模', desc: 'XGBoost / 评分卡 / 特征工程' },

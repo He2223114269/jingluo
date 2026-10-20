@@ -64,31 +64,15 @@ export default function WorkPage() {
         <AnimatedSection>
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">02 业务规模 · BUSINESS SCALE</div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {workScale.map((s, i) => (
-                <div
-                  key={i}
-                  title={(s as { note?: string }).note}
-                  className={`relative group bg-[#1e293b] border rounded-xl p-5 text-center cursor-help ${
-                    (s as { primary?: boolean }).primary
-                      ? 'border-cyan-400/40 lg:col-span-3 bg-cyan-400/[0.04]'
-                      : 'border-[#334155]'
-                  }`}
-                >
-                  <div className={`${(s as { primary?: boolean }).primary ? 'text-4xl sm:text-5xl' : 'text-2xl sm:text-3xl'} font-bold text-cyan-400`}>
-                    {s.value}
-                  </div>
+                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-5 text-center">
+                  <div className="text-2xl sm:text-3xl font-bold text-cyan-400">{s.value}</div>
                   <div className="text-sm text-slate-200 mt-2">{s.label}</div>
                   <div className="text-xs text-slate-500 mt-1">{s.desc}</div>
-                  {(s as { note?: string }).note && (
-                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 max-w-[90vw] rounded-lg border border-[#334155] bg-slate-900/95 p-3 text-left text-[11px] leading-relaxed text-slate-300 opacity-0 shadow-xl transition-opacity duration-150 group-hover:opacity-100 z-30">
-                      {(s as { note?: string }).note}
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
-            <p className="text-[11px] text-slate-500 mt-3">悬停卡片查看口径 · 数据截至 2026-09-23（业务停流前）</p>
           </div>
         </AnimatedSection>
 

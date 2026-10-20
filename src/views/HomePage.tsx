@@ -26,11 +26,13 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               系统运行中
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-100 tracking-tight mb-6">
-              风控建模算法工程师
+              风控策略建模工程师
             </h1>
-            <p className="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-              独立负责实时授信业务风控建模与策略制定<br className="hidden sm:block" />
-              构建数据驱动的风控系统，持续降低业务资损
+            <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-4 leading-relaxed">
+              独立负责「淘顺实时授信」端到端风控 · 覆盖 30 省 · 累计管理放款 22 亿+
+            </p>
+            <p className="text-sm sm:text-base text-slate-500 max-w-2xl mx-auto mb-12 leading-relaxed">
+              准入规则 → 信用评分 → 策略决策 → 贷后监控 → 风险分析，形成完整决策闭环
             </p>
           </motion.div>
 
@@ -69,18 +71,28 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </motion.div>
 
           {/* CTA Button */}
-          <motion.button
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            onClick={() => onNavigate('work')}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-sm font-medium hover:bg-cyan-500/25 transition-all duration-200"
+            className="flex flex-wrap items-center justify-center gap-3"
           >
-            查看工作介绍
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-            </svg>
-          </motion.button>
+            <button
+              onClick={() => onNavigate('work')}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 text-sm font-medium hover:bg-cyan-500/25 transition-all duration-200"
+            >
+              查看工作介绍
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M6 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              </svg>
+            </button>
+            <button
+              onClick={() => onNavigate('resume')}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[#334155] text-slate-300 text-sm font-medium hover:bg-slate-800/50 transition-all duration-200"
+            >
+              查看简历
+            </button>
+          </motion.div>
         </div>
       </section>
 

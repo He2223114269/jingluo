@@ -15,16 +15,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://jingluo-blond.vercel.app"),
   title: {
-    default: "何郴 · 风控建模算法工程师",
+    default: "何郴 · 风控策略建模工程师",
     template: "%s · 何郴",
   },
-  description: "风控建模算法工程师作品集：实时授信风控、策略调控、Vintage 资损预测、自动化监控与算法研究。",
+  description: "风控策略建模工程师作品集：实时授信风控、策略决策、Vintage 资损预测、风险监控与工程化平台。",
   keywords: ["风控建模", "信用评分", "策略分析", "Vintage", "Python", "SQL", "Next.js"],
   authors: [{ name: "何郴" }],
   creator: "何郴",
   openGraph: {
-    title: "何郴 · 风控建模算法工程师",
-    description: "实时授信风控建模、策略调控、资损预测与自动化监控作品集。",
+    title: "何郴 · 风控策略建模工程师",
+    description: "实时授信风控策略建模、策略调控、资损预测与监控平台作品集。",
     url: "/",
     siteName: "Jingluo Portfolio",
     locale: "zh_CN",
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "何郴 · 风控建模算法工程师",
-    description: "实时授信风控建模、策略调控、资损预测与自动化监控作品集。",
+    title: "何郴 · 风控策略建模工程师",
+    description: "实时授信风控策略建模、策略调控、资损预测与监控平台作品集。",
   },
   robots: {
     index: true,

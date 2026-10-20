@@ -5,15 +5,15 @@ import Navbar from '@/components/Navbar';
 import MonitorSidebar, { type MonitorPage } from '@/components/MonitorSidebar';
 
 // PageKey 类型定义（与 Navbar 保持一致）
-type PageKey = 'home' | 'work' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind' | 'case-loss-audit';
+type PageKey = 'home' | 'work' | 'projects' | 'thinking' | 'about' | 'resume' | 'dashboard' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind' | 'case-loss-audit';
 import Footer from '@/components/Footer';
 import HomePage from '@/views/HomePage';
 import WorkPage from '@/views/WorkPage';
 import ProjectsPage from '@/views/ProjectsPage';
 import ThinkingPage from '@/views/ThinkingPage';
 import AboutPage from '@/views/AboutPage';
+import ResumePage from '@/views/ResumePage';
 import DashboardPage from '@/views/DashboardPage';
-import DemoPage from '@/views/DemoPage';
 import MonitorPassRate from '@/views/MonitorPassRate';
 import MonitorOverdue from '@/views/MonitorOverdue';
 import MonitorModel from '@/views/MonitorModel';
@@ -25,7 +25,7 @@ import ProjectZhiHuan from '@/views/ProjectZhiHuan';
 import ProjectEcomind from '@/views/ProjectEcomind';
 import CaseLossAudit from '@/views/CaseLossAudit';
 
-const validPages = ['home', 'work', 'projects', 'thinking', 'about', 'dashboard', 'demo', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special', 'research-dnmf', 'project-zhihuan', 'project-ecomind', 'case-loss-audit'];
+const validPages = ['home', 'work', 'projects', 'thinking', 'about', 'resume', 'dashboard', 'monitor-pass-rate', 'monitor-overdue', 'monitor-model', 'monitor-volume', 'monitor-rating', 'monitor-special', 'research-dnmf', 'project-zhihuan', 'project-ecomind', 'case-loss-audit'];
 
 function getInitialPage(): PageKey {
   // 服务端渲染时始终返回 'home'，避免 hydration 不匹配
@@ -93,10 +93,10 @@ export default function MainApp() {
         return <ThinkingPage />;
       case 'about':
         return <AboutPage />;
+      case 'resume':
+        return <ResumePage />;
       case 'dashboard':
         return <DashboardPage />;
-      case 'demo':
-        return <DemoPage />;
       case 'monitor-pass-rate':
         return <MonitorPassRate />;
       case 'monitor-overdue':

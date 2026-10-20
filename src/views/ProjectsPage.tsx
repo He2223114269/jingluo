@@ -4,6 +4,15 @@ import { motion } from 'framer-motion';
 import AnimatedSection from '@/components/AnimatedSection';
 import { projects } from '@/data/mock';
 
+const detailMap: Record<string, string> = {
+  'loss-audit': 'case-loss-audit',
+  'deep-mf': 'research-dnmf',
+  'zhihuan-ecology': 'project-zhihuan',
+  'ecomind': 'project-ecomind',
+  'risk-control-engine': 'dashboard',
+  'real-time-risk': 'monitor-pass-rate',
+};
+
 function navigateTo(page: string) {
   window.location.hash = page;
   window.dispatchEvent(new Event('hashchange'));
@@ -61,17 +70,11 @@ export default function ProjectsPage() {
                     </div>
                   </div>
                 </div>
-                {(project.id === 'loss-audit' || project.id === 'deep-mf' || project.id === 'zhihuan-ecology' || project.id === 'ecomind') && (
+                {detailMap[project.id] && (
                   <div className="mt-4 pt-4 border-t border-[#334155]/30">
                     <button
                       onClick={() => {
-                          const map: Record<string, string> = {
-                            'loss-audit': 'case-loss-audit',
-                            'deep-mf': 'research-dnmf',
-                            'zhihuan-ecology': 'project-zhihuan',
-                            'ecomind': 'project-ecomind',
-                          };
-                          navigateTo(map[project.id] || 'research-dnmf');
+                          navigateTo(detailMap[project.id]);
                         }}
                       className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
                     >

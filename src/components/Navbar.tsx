@@ -3,16 +3,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-type PageKey = 'home' | 'work' | 'projects' | 'thinking' | 'about' | 'dashboard' | 'demo' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind' | 'case-loss-audit';
+type PageKey = 'home' | 'work' | 'projects' | 'thinking' | 'about' | 'resume' | 'dashboard' | 'monitor-pass-rate' | 'monitor-overdue' | 'monitor-model' | 'monitor-volume' | 'monitor-rating' | 'monitor-special' | 'research-dnmf' | 'project-zhihuan' | 'project-ecomind' | 'case-loss-audit';
 
 const navItems: { key: PageKey; label: string }[] = [
   { key: 'home', label: '首页' },
   { key: 'work', label: '工作介绍' },
   { key: 'projects', label: '项目' },
   { key: 'thinking', label: '思考' },
+  { key: 'resume', label: '简历' },
   { key: 'about', label: '关于我' },
-  { key: 'dashboard', label: '监控面板' },
-  { key: 'demo', label: '风险模拟器' },
 ];
 
 interface NavbarProps {
@@ -65,7 +64,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 key={item.key}
                 onClick={() => onNavigate(item.key)}
                 className={`px-3 py-1.5 rounded-md text-sm transition-all duration-200 ${
-                  currentPage === item.key || (item.key === 'dashboard' && currentPage.startsWith('monitor-'))
+                  currentPage === item.key
                     ? 'text-cyan-400 bg-cyan-400/10'
                     : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
                 }`}

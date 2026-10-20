@@ -372,6 +372,61 @@ export const scaleDetail = {
 };
 
 
+
+export const provinceMap = [
+  { name: '湖南省', label: '湖南', orders: 1060911, amt: 15.54, first: '2024-11' },
+  { name: '贵州省', label: '贵州', orders: 199022, amt: 3.08, first: '2024-11' },
+  { name: '江西省', label: '江西', orders: 97918, amt: 1.5, first: '2024-11' },
+  { name: '广西壮族自治区', label: '广西', orders: 44018, amt: 0.52, first: '2024-11' },
+  { name: '甘肃省', label: '甘肃', orders: 34776, amt: 0.44, first: '2026-03' },
+  { name: '安徽省', label: '安徽', orders: 24208, amt: 0.23, first: '2026-01' },
+  { name: '海南省', label: '海南', orders: 21226, amt: 0.26, first: '2025-03' },
+  { name: '江苏省', label: '江苏', orders: 7269, amt: 0.1, first: '2026-03' },
+  { name: '宁夏回族自治区', label: '宁夏', orders: 6548, amt: 0.08, first: '2024-11' },
+  { name: '四川省', label: '四川', orders: 3794, amt: 0.06, first: '2026-03' },
+  { name: '吉林省', label: '吉林', orders: 3639, amt: 0.04, first: '2026-03' },
+  { name: '河北省', label: '河北', orders: 2392, amt: 0.02, first: '2026-08' },
+  { name: '陕西省', label: '陕西', orders: 1836, amt: 0.02, first: '2026-08' },
+  { name: '湖北省', label: '湖北', orders: 1409, amt: 0.02, first: '2026-08' },
+  { name: '辽宁省', label: '辽宁', orders: 1294, amt: 0.02, first: '2026-08' },
+  { name: '山东省', label: '山东', orders: 1137, amt: 0.02, first: '2026-08' },
+  { name: '山西省', label: '山西', orders: 709, amt: 0.01, first: '2026-07' },
+  { name: '河南省', label: '河南', orders: 637, amt: 0.01, first: '2026-08' },
+  { name: '浙江省', label: '浙江', orders: 589, amt: 0.01, first: '2026-06' },
+  { name: '内蒙古自治区', label: '内蒙古', orders: 556, amt: 0.01, first: '2026-08' },
+  { name: '黑龙江省', label: '黑龙江', orders: 480, amt: 0.01, first: '2026-08' },
+  { name: '云南省', label: '云南', orders: 276, amt: 0, first: '2026-08' },
+  { name: '青海省', label: '青海', orders: 170, amt: 0, first: '2026-08' },
+  { name: '西藏自治区', label: '西藏', orders: 125, amt: 0, first: '2026-08' },
+  { name: '新疆维吾尔自治区', label: '新疆', orders: 114, amt: 0, first: '2026-08' },
+  { name: '福建省', label: '福建', orders: 69, amt: 0, first: '2026-08' },
+  { name: '重庆市', label: '重庆', orders: 58, amt: 0, first: '2026-08' },
+  { name: '天津市', label: '天津', orders: 45, amt: 0, first: '2026-08' },
+  { name: '北京市', label: '北京', orders: 44, amt: 0, first: '2026-08' },
+];
+
+export const topSuppliers = [
+  { name: '贵州兴信大通讯贸易', orders: 12981, stores: 127 },
+  { name: '东安恒信通手机卖场', orders: 12915, stores: 36 },
+  { name: '张家界永定诚至通讯店', orders: 8370, stores: 11 },
+  { name: '遵义兴信大通讯贸易', orders: 7676, stores: 31 },
+  { name: '湖南飞鸿电子信息', orders: 7385, stores: 22 },
+  { name: '永州冷水滩七信手机店', orders: 7200, stores: 35 },
+  { name: '长沙广袤德馨科技', orders: 6989, stores: 24 },
+  { name: '遵义中源恒信通讯', orders: 6717, stores: 28 },
+];
+
+export const topStores = [
+  { name: '岳阳开发区乐科通讯店', province: '湖南', orders: 4362 },
+  { name: '益阳桃花仑建资国力手机卖场', province: '湖南', orders: 3020 },
+  { name: '长沙芙蓉迅磊鑫专营店', province: '湖南', orders: 2824 },
+  { name: '耒阳五一中心厅五洲店', province: '湖南', orders: 2787 },
+  { name: '宁远中心营业厅凯利通信', province: '湖南', orders: 2594 },
+  { name: '汨罗亿佰佳中心营业厅', province: '湖南', orders: 2473 },
+  { name: '邵东齐欣大卖场', province: '湖南', orders: 2456 },
+  { name: '平江县中心营业厅', province: '湖南', orders: 2257 },
+];
+
 export const scaleCards = [
   {
     key: 'fund', label: '资金规模', value: '22.02 亿', sub: '累计管理放款',

@@ -4,10 +4,15 @@ import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
 import ScaleCards from '@/components/viz/ScaleCards';
+import ProvinceMap from '@/components/viz/ProvinceMap';
+import RankBoard from '@/components/viz/RankBoard';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
   workScale,
+  provinceMap,
+  topSuppliers,
+  topStores,
   scaleDetail,
   workDuties,
   workFlow,
@@ -67,6 +72,21 @@ export default function WorkPage() {
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">02 业务规模 · BUSINESS SCALE</div>
             <ScaleCards />
+            <div className="mt-4">
+              <ProvinceMap data={provinceMap} />
+            </div>
+            <div className="grid lg:grid-cols-2 gap-4 mt-4">
+              <RankBoard
+                title="代理商 Top 8（按单量）"
+                rows={topSuppliers.map((x) => ({ name: x.name, orders: x.orders, sub: `${x.stores} 家门店` }))}
+                note="实际产生成交的代理商口径；头部代理商单店产出差异较大。"
+              />
+              <RankBoard
+                title="门店 Top 8（按单量）"
+                rows={topStores.map((x) => ({ name: x.name, orders: x.orders, sub: x.province }))}
+                note="门店按名称 + 省份去重；Top 门店集中在湖南。"
+              />
+            </div>
           </div>
         </AnimatedSection>
 

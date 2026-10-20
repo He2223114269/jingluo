@@ -4,11 +4,9 @@ import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain } from '@/components/viz/WorkVisuals';
-import { ProvinceBoard, SegmentBoard } from '@/components/viz/ScaleBoard';
 import {
   workIdentity,
   workScale,
-  scaleDistribution,
   workDuties,
   workFlow,
   workCases,
@@ -70,7 +68,8 @@ export default function WorkPage() {
               {workScale.map((s, i) => (
                 <div
                   key={i}
-                  className={`bg-[#1e293b] border rounded-xl p-5 text-center ${
+                  title={(s as { note?: string }).note}
+                  className={`relative group bg-[#1e293b] border rounded-xl p-5 text-center cursor-help ${
                     (s as { primary?: boolean }).primary
                       ? 'border-cyan-400/40 lg:col-span-3 bg-cyan-400/[0.04]'
                       : 'border-[#334155]'
@@ -81,31 +80,15 @@ export default function WorkPage() {
                   </div>
                   <div className="text-sm text-slate-200 mt-2">{s.label}</div>
                   <div className="text-xs text-slate-500 mt-1">{s.desc}</div>
+                  {(s as { note?: string }).note && (
+                    <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 max-w-[90vw] rounded-lg border border-[#334155] bg-slate-900/95 p-3 text-left text-[11px] leading-relaxed text-slate-300 opacity-0 shadow-xl transition-opacity duration-150 group-hover:opacity-100 z-30">
+                      {(s as { note?: string }).note}
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
-            <div className="grid lg:grid-cols-2 gap-4 mt-4">
-              <ProvinceBoard rows={scaleDistribution.provinces} total={scaleDistribution.totalOrders} />
-              <SegmentBoard segments={scaleDistribution.segments} channels={scaleDistribution.channels} />
-            </div>
-            <div className="mt-4 rounded-lg border border-[#334155]/70 bg-slate-900/20 p-4 space-y-1.5">
-              <div className="text-[11px] font-semibold text-slate-400 mb-1">口径说明（差异都在这里）</div>
-              <p className="text-[11px] text-slate-500 leading-relaxed">
-                · 累计放款 22.02 亿 = 订单金额合计，含已结清订单；<span className="text-slate-400">不是</span>在贷余额。
-              </p>
-              <p className="text-[11px] text-slate-500 leading-relaxed">
-                · 订单 151.5 万笔、用户 151.3 万人（按身份证去重），人均约 1.0 单。
-              </p>
-              <p className="text-[11px] text-slate-500 leading-relaxed">
-                · 省份按订单发生地统计，实际有订单 29 省；「30 省」为业务开通口径，含暂未放款省份。
-              </p>
-              <p className="text-[11px] text-slate-500 leading-relaxed">
-                · 门店 3.4 万家 / 代理商 2.7 万家为实际成交渠道，非签约总量；日均 2,200 单为全周期均值，近 90 天约 2,000 单。
-              </p>
-              <p className="text-[11px] text-slate-500 leading-relaxed">
-                · 数据截至 2026-09-23（业务停流前），订单维度，未做金额四舍五入以外的加工。
-              </p>
-            </div>
+            <p className="text-[11px] text-slate-500 mt-3">悬停卡片查看口径 · 数据截至 2026-09-23（业务停流前）</p>
           </div>
         </AnimatedSection>
 

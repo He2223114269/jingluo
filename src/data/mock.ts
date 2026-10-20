@@ -335,38 +335,21 @@ export const workIdentity = {
 };
 
 export const workScale = [
-  { value: '22.02 亿', label: '累计管理放款', desc: '2024-11 入职起 · 竣工口径', primary: true },
-  { value: '30 省', label: '业务覆盖', desc: '实时授信业务覆盖' },
-  { value: '2,200 单', label: '日均授信订单', desc: '近 90 天约 2,000 单，峰值 3,000+' },
-  { value: '34,110 家', label: '服务门店', desc: '2024-11 起累计' },
-  { value: '26,891 家', label: '合作代理商', desc: '2024-11 起累计' },
-  { value: '151 万', label: '累计服务用户', desc: '按身份证去重' },
+  { value: '22.02 亿', label: '累计管理放款', desc: '2024-11 入职起', primary: true,
+    note: '订单金额合计，含已结清订单；不是当前在贷余额。数据截至 2026-09-23。' },
+  { value: '30 省', label: '业务覆盖', desc: '实时授信业务覆盖',
+    note: '业务开通口径。按订单发生地统计，实际有订单的是 29 省，其余为已开通但未放量。' },
+  { value: '2,200 单', label: '日均授信订单', desc: '近 90 天约 2,000 单',
+    note: '全周期均值（2024-11-04 至 2026-09-23）；近 90 天约 2,031 单/天，峰值日超过 3,000 单。' },
+  { value: '34,110 家', label: '服务门店', desc: '2024-11 起累计',
+    note: '实际产生成交的门店数，按 store_id 去重；不是签约门店总量。' },
+  { value: '26,891 家', label: '合作代理商', desc: '2024-11 起累计',
+    note: '实际产生成交的代理商编码数；同一代理商可能对应多个门店。' },
+  { value: '151 万', label: '累计服务用户', desc: '按身份证去重',
+    note: '按身份证号去重；同期订单 151.5 万笔，人均约 1.0 单。' },
 ];
 
 
-export const scaleDistribution = {
-  totalOrders: 1515269,
-  provinces: [
-    { name: '湖南省', orders: 1060911 },
-    { name: '贵州省', orders: 199022 },
-    { name: '江西省', orders: 97918 },
-    { name: '广西', orders: 44018 },
-    { name: '甘肃省', orders: 34776 },
-    { name: '安徽省', orders: 24208 },
-    { name: '海南省', orders: 21226 },
-    { name: '其他 22 省', orders: 33190 },
-  ],
-  segments: [
-    { name: '存量 VIP', orders: 733651 },
-    { name: '公众', orders: 439156 },
-    { name: 'VIP', orders: 342462 },
-  ],
-  channels: [
-    { name: '普通进件', orders: 1492048 },
-    { name: '特批白名单', orders: 21510 },
-    { name: '保证金', orders: 1675 },
-  ],
-};
 
 export const workDuties = [
   { title: '准入规则与策略树', desc: '3 层 20+ 节点分层策略设计' },

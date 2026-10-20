@@ -101,3 +101,104 @@ export function FraudFlow() {
     </div>
   );
 }
+
+/* 分支质态 A~E 与通过率：阶梯式递减（A/E 为确定值，中间档按质态递减） */
+export function GradeLadder() {
+  const grades = [
+    { g: 'A', q: '≤4%', p: 90, color: '#22d3ee' },
+    { g: 'B', q: '4~6%', p: 70, color: '#38bdf8' },
+    { g: 'C', q: '6~8%', p: 50, color: '#60a5fa' },
+    { g: 'D', q: '8~10%', p: 30, color: '#818cf8' },
+    { g: 'E', q: '>10%', p: 2, color: '#f472b6' },
+  ];
+  return (
+    <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4">
+      <div className="flex items-end gap-4 h-44">
+        {grades.map((x) => (
+          <div key={x.g} className="flex-1 flex flex-col items-center justify-end h-full">
+            <div className="text-[11px] text-slate-400 mb-1">{x.p}%</div>
+            <div
+              className="w-full rounded-t"
+              style={{ height: `${Math.max(x.p, 3)}%`, background: x.color, opacity: 0.85 }}
+            />
+            <div className="text-sm font-semibold text-slate-200 mt-2">{x.g}</div>
+            <div className="text-[10px] text-slate-500">逾期 {x.q}</div>
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-slate-500 mt-3">
+        按分支半年质态分档：A 档 ≤4% 给到 90%，逐档递减至 E 档 &gt;10% 仅 2%；中间档位按质态连续递减（图中为示意）。
+      </p>
+    </div>
+  );
+}
+
+/* 特批白名单的结构性扭曲 */
+export function SpecialShareChart() {
+  return (
+    <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4 space-y-4">
+      <div>
+        <div className="flex justify-between text-xs mb-1">
+          <span className="text-slate-400">特批占湖南订单</span>
+          <span className="text-amber-300">34.9%</span>
+        </div>
+        <div className="h-2.5 rounded-full bg-slate-900/60">
+          <div className="h-2.5 rounded-full bg-amber-400/80" style={{ width: '34.9%' }} />
+        </div>
+      </div>
+      <div>
+        <div className="flex justify-between text-xs mb-1">
+          <span className="text-slate-400">特批贡献未还本金</span>
+          <span className="text-rose-300">47.7%</span>
+        </div>
+        <div className="h-2.5 rounded-full bg-slate-900/60">
+          <div className="h-2.5 rounded-full bg-rose-400/80" style={{ width: '47.7%' }} />
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-3 pt-1">
+        <div className="rounded-lg border border-rose-400/25 bg-rose-400/5 p-3">
+          <div className="text-lg font-bold text-rose-300">6.63%</div>
+          <div className="text-[11px] text-slate-400 mt-1">特批未还率</div>
+        </div>
+        <div className="rounded-lg border border-slate-600/40 bg-slate-900/30 p-3">
+          <div className="text-lg font-bold text-slate-300">3.43%</div>
+          <div className="text-[11px] text-slate-400 mt-1">普通客群未还率</div>
+        </div>
+      </div>
+      <p className="text-xs text-slate-500">
+        特批单 17,168 笔、占湖南 34.9%，未还率是普通客群的近 2 倍，贡献 47.7% 未还本金 —— 不剔除会系统性拉偏 Vintage 曲线。
+      </p>
+    </div>
+  );
+}
+
+/* 监控平台四层架构 */
+export function PlatformArchitecture() {
+  const layers = [
+    { t: '展示层', d: '六大模块面板 · KPI 概览 · 异常告警', c: '#22d3ee' },
+    { t: '服务层', d: 'FastAPI · 17+ 监控 / 分析接口', c: '#38bdf8' },
+    { t: '指标层', d: '本地 ADS 聚合 · 全国 / 省 / 市 × 5 类切片', c: '#60a5fa' },
+    { t: '数据层', d: 'StarRocks · DWS / ODS 业务表', c: '#818cf8' },
+  ];
+  return (
+    <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4">
+      <div className="space-y-2">
+        {layers.map((l) => (
+          <div key={l.t} className="flex items-center gap-3 rounded-lg border border-[#334155] bg-slate-900/40 p-3">
+            <span className="w-1.5 h-8 rounded" style={{ background: l.c }} />
+            <div className="w-16 text-xs font-semibold text-slate-200">{l.t}</div>
+            <div className="text-xs text-slate-400">{l.d}</div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-3 flex items-center justify-center gap-2 text-[11px] text-slate-500">
+        <span className="px-2 py-1 rounded border border-[#334155]">监控</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded border border-[#334155]">归因</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded border border-[#334155]">调参</span>
+        <span className="text-cyan-400">闭环</span>
+      </div>
+    </div>
+  );
+}

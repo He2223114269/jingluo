@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
-import { ScoreLineDiagram, MigrationTimeline, FraudFlow } from '@/components/viz/WorkVisuals';
+import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
   workScale,
@@ -184,12 +184,36 @@ export default function WorkPage() {
                         </ul>
                       </DetailDisclosure>
                     )}
+                    {c.no === 'Case 02' && (
+                      <DetailDisclosure hint="展开：A~E 分档怎么定通过率">
+                        <GradeLadder />
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          分档的用途是给出可解释的初始配额，避免各省各分支拍脑袋；上线后再按实际质态微调，而不是一次定死。
+                        </p>
+                      </DetailDisclosure>
+                    )}
                     {c.no === 'Case 03' && (
                       <DetailDisclosure hint="展开：门店欺诈怎么从特征走到处置">
                         <FraudFlow />
                         <p className="text-sm text-slate-400 leading-relaxed">
                           特征不是一次性规则，而是固化成每日扫描：命中 2 条进人工核查，命中 3 条直接熔断；
                           门店处置后在监控里持续跟踪其新增进件与逾期变化。
+                        </p>
+                      </DetailDisclosure>
+                    )}
+                    {c.no === 'Case 04' && (
+                      <DetailDisclosure hint="展开：特批到底扭曲了多少">
+                        <SpecialShareChart />
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          处理方式不是简单剔除数据，而是把特批单独作为一层口径披露，同时修正全量曲线的解读方式。
+                        </p>
+                      </DetailDisclosure>
+                    )}
+                    {c.no === 'Case 05' && (
+                      <DetailDisclosure hint="展开：平台是怎么搭起来的">
+                        <PlatformArchitecture />
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          目标不是做一个看板，而是让「发现异常 → 定位原因 → 调整配置 → 回读验证」这条链路在同一个系统里跑通。
                         </p>
                       </DetailDisclosure>
                     )}

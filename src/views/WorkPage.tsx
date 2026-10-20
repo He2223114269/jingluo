@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
+import ScaleCards from '@/components/viz/ScaleCards';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
@@ -65,15 +66,7 @@ export default function WorkPage() {
         <AnimatedSection>
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">02 业务规模 · BUSINESS SCALE</div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {workScale.map((s, i) => (
-                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-5 text-center">
-                  <div className="text-2xl sm:text-3xl font-bold text-cyan-400">{s.value}</div>
-                  <div className="text-sm text-slate-200 mt-2">{s.label}</div>
-                  <div className="text-xs text-slate-500 mt-1">{s.desc}</div>
-                </div>
-              ))}
-            </div>
+            <ScaleCards />
           </div>
         </AnimatedSection>
 

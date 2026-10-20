@@ -44,13 +44,22 @@ export default function ResumePage() {
               </div>
             </div>
             <p className="mt-5 text-sm leading-relaxed text-slate-300">{profile.summary}</p>
-            <div className="mt-5 no-print">
-              <button
-                onClick={() => window.print()}
+            <div className="mt-5 flex flex-wrap gap-3 no-print">
+              <a
+                href="/resume/hechen-resume.pdf"
+                download="何郴_风控策略建模工程师_简历.pdf"
                 className="px-3 py-1.5 rounded-md text-sm bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 hover:bg-cyan-500/25 transition-colors"
               >
-                打印 / 另存 PDF
-              </button>
+                下载 PDF
+              </a>
+              <a
+                href="/resume/hechen-resume.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-1.5 rounded-md text-sm border border-[#334155] text-slate-300 hover:bg-slate-800/50 transition-colors"
+              >
+                在线阅读
+              </a>
             </div>
           </div>
         </AnimatedSection>

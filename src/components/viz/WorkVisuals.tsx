@@ -202,3 +202,46 @@ export function PlatformArchitecture() {
     </div>
   );
 }
+
+/* 业务链路：让读者一眼看清行业与自己所处环节 */
+export function BusinessChain() {
+  const steps = [
+    { t: '门店分期购机', d: '用户在手机门店选择分期套餐' },
+    { t: '提交授信申请', d: '填写资料，进入实时审批' },
+    { t: '风控决策', d: '准入规则 · 评分 · 策略树 · 复审捞回', mine: true },
+    { t: '授信放款', d: '给出额度，资金方放款' },
+    { t: '分期还款', d: '按期还款，持续监控质态' },
+  ];
+  return (
+    <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4 overflow-x-auto">
+      <div className="flex items-stretch gap-2 min-w-[680px]">
+        {steps.map((s, i) => (
+          <div key={s.t} className="flex items-center gap-2 flex-1">
+            <div
+              className={`flex-1 rounded-lg p-3 border ${
+                s.mine
+                  ? 'bg-cyan-400/10 border-cyan-400/50 ring-1 ring-cyan-400/20'
+                  : 'bg-slate-900/40 border-[#334155]'
+              }`}
+            >
+              <div className="flex items-center gap-1.5">
+                <span className={`text-[10px] font-mono ${s.mine ? 'text-cyan-300' : 'text-slate-500'}`}>
+                  0{i + 1}
+                </span>
+                {s.mine && (
+                  <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-400/20 text-cyan-200">我的环节</span>
+                )}
+              </div>
+              <div className={`text-xs font-semibold mt-1 ${s.mine ? 'text-cyan-200' : 'text-slate-200'}`}>{s.t}</div>
+              <div className="text-[11px] text-slate-500 mt-1 leading-relaxed">{s.d}</div>
+            </div>
+            {i < steps.length - 1 && <span className="text-slate-600 text-xs">→</span>}
+          </div>
+        ))}
+      </div>
+      <p className="text-xs text-slate-500 mt-3">
+        消费金融 · 手机分期场景：我在第 3 环负责实时授信决策，向前承接客群与套餐结构，向后对通过率与贷后质态负责。
+      </p>
+    </div>
+  );
+}

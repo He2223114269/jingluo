@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
-import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture } from '@/components/viz/WorkVisuals';
+import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
   workScale,
@@ -34,11 +34,28 @@ export default function WorkPage() {
               <div className="text-sm font-semibold text-cyan-400 mb-3 flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />01 业务背景
               </div>
-              <p className="text-sm text-slate-400 leading-relaxed">
-                消费金融实时授信风控：面向手机分期消费场景，在贷前准入环节做秒级授信决策。
-                业务覆盖多省份、多业务场景，日均约 3000 笔授信订单，累计放款规模 7 亿+。
-                不是课堂项目，而是在真实生产环境里做风控。
+              <p className="text-base text-slate-200 leading-relaxed mb-1">
+                消费金融 · 手机分期场景下的<span className="text-cyan-300 font-medium">实时授信风控</span>。
               </p>
+              <p className="text-sm text-slate-400 leading-relaxed mb-4">
+                用户在手机门店办理分期购机，系统需要在秒级内判断「是否放款、放多少」。
+                决策发生在线，不能靠离线跑批；同一套策略要面对 30 个省差异很大的客群。
+              </p>
+              <BusinessChain />
+              <div className="grid sm:grid-cols-3 gap-3 mt-4">
+                <div className="rounded-lg border border-[#334155] bg-slate-900/30 p-3">
+                  <div className="text-xs font-semibold text-slate-200 mb-1">秒级决策</div>
+                  <div className="text-[11px] text-slate-500 leading-relaxed">在线审批，策略与评分必须实时返回</div>
+                </div>
+                <div className="rounded-lg border border-[#334155] bg-slate-900/30 p-3">
+                  <div className="text-xs font-semibold text-slate-200 mb-1">通过率与资损平衡</div>
+                  <div className="text-[11px] text-slate-500 leading-relaxed">放少了影响业务，放多了推高资损</div>
+                </div>
+                <div className="rounded-lg border border-[#334155] bg-slate-900/30 p-3">
+                  <div className="text-xs font-semibold text-slate-200 mb-1">跨省客群差异</div>
+                  <div className="text-[11px] text-slate-500 leading-relaxed">30 省客群结构不同，策略不能直接复制</div>
+                </div>
+              </div>
             </div>
           </div>
         </AnimatedSection>
@@ -46,7 +63,7 @@ export default function WorkPage() {
         {/* 03 业务规模 */}
         <AnimatedSection>
           <div className="mb-14">
-            <div className="text-sm font-semibold text-cyan-400 mb-4">03 业务规模 · BUSINESS SCALE</div>
+            <div className="text-sm font-semibold text-cyan-400 mb-4">02 业务规模 · BUSINESS SCALE</div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {workScale.map((s, i) => (
                 <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-xl p-5 text-center">
@@ -62,7 +79,7 @@ export default function WorkPage() {
         {/* 02 职责边界 */}
         <AnimatedSection>
           <div className="mb-14">
-            <div className="text-sm font-semibold text-cyan-400 mb-4">02 我的职责边界 · RESPONSIBILITY</div>
+            <div className="text-sm font-semibold text-cyan-400 mb-4">03 我的职责边界 · RESPONSIBILITY</div>
             <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6 mb-4">
               <p className="text-sm text-slate-400 leading-relaxed">
                 独立/主导负责实时授信业务的风控分析、模型开发、策略设计及效果监控，参与贷前准入全流程。

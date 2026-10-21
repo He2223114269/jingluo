@@ -56,9 +56,9 @@ export default function ScaleCards() {
               initial={{ scale: 0.97 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="mt-4 rounded-2xl border border-cyan-400/30 bg-slate-900/70 p-5 sm:p-6 shadow-2xl shadow-black/30"
+              className="mt-4 rounded-2xl border border-cyan-400/30 bg-slate-900/70 p-5 sm:p-6 shadow-2xl shadow-black/30 min-h-[330px]"
             >
-              <div className="grid lg:grid-cols-[1.05fr_1fr] gap-6">
+              <div className="grid lg:grid-cols-[1.05fr_1fr] gap-6 items-stretch">
                 <div>
                   <div className="text-xs text-slate-400">{card.label}</div>
                   <div className="text-3xl sm:text-4xl font-bold text-cyan-300 mt-1">{card.value}</div>
@@ -73,11 +73,11 @@ export default function ScaleCards() {
                   </div>
                 </div>
 
-                <div>
+                <div className="flex flex-col justify-center">
                   {card.key === 'province' ? (
                     <>
                       <div className="text-[11px] text-slate-500 mb-1">中国地图 · 按单量着色（悬停看金额与首单）</div>
-                      <ProvinceMap data={provinceMap} compact height={280} />
+                      <ProvinceMap data={provinceMap} compact height={300} />
                     </>
                   ) : card.key === 'supplier' ? (
                     <>
@@ -95,7 +95,7 @@ export default function ScaleCards() {
                       <div className="space-y-2">
                         {card.bars.map((b) => (
                           <div key={b.name} className="flex items-center gap-3">
-                            <div className="w-20 text-[10px] text-slate-500 truncate text-right">{b.name}</div>
+                            <div className="w-16 text-[10px] text-slate-500 truncate text-right">{b.name}</div>
                             <div className="flex-1 h-2 rounded-full bg-slate-800">
                               <motion.div
                                 initial={{ width: 0 }}
@@ -104,6 +104,7 @@ export default function ScaleCards() {
                                 className="h-2 rounded-full bg-cyan-400/70"
                               />
                             </div>
+                            <div className="w-20 text-[10px] text-slate-400 text-right whitespace-nowrap">{(b as { v?: string }).v}</div>
                           </div>
                         ))}
                       </div>

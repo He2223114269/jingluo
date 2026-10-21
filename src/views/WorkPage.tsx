@@ -4,6 +4,7 @@ import { useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
 import ScaleCards from '@/components/viz/ScaleCards';
+import DutyModal from '@/components/DutyModal';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
@@ -13,6 +14,7 @@ import {
   topStores,
   scaleDetail,
   workDuties,
+  dutyDetails,
   workFlow,
   workCases,
   workAutomation,
@@ -22,6 +24,7 @@ import {
 
 export default function WorkPage() {
   const [openCase, setOpenCase] = useState<string | null>(null);
+  const [duty, setDuty] = useState<string | null>(null);
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
       <div className="max-w-5xl mx-auto">
@@ -85,10 +88,18 @@ export default function WorkPage() {
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {workDuties.map((d, i) => (
-                <div key={i} className="bg-[#1e293b] border border-[#334155] rounded-lg p-4">
-                  <div className="text-sm font-medium text-slate-200">{d.title}</div>
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setDuty(d.title)}
+                  className="text-left bg-[#1e293b] border border-[#334155] rounded-lg p-4 hover:border-cyan-400/40 hover:bg-slate-800/40 transition-colors group"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="text-sm font-medium text-slate-200 group-hover:text-cyan-200 transition-colors">{d.title}</div>
+                    <span className="text-[10px] text-slate-600 group-hover:text-cyan-400 shrink-0 mt-0.5">详情 →</span>
+                  </div>
                   <div className="text-xs text-slate-500 mt-1 leading-relaxed">{d.desc}</div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -384,6 +395,9 @@ export default function WorkPage() {
           </section>
         </AnimatedSection>
       </div>
+      {duty && dutyDetails[duty] && (
+        <DutyModal title={duty} detail={dutyDetails[duty]} onClose={() => setDuty(null)} />
+      )}
     </div>
   );
 }

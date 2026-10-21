@@ -5,6 +5,7 @@ import AnimatedSection from '@/components/AnimatedSection';
 import DetailDisclosure from '@/components/DetailDisclosure';
 import ScaleCards from '@/components/viz/ScaleCards';
 import DutyModal from '@/components/DutyModal';
+import DutyAccessModal from '@/components/DutyAccessModal';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
@@ -395,7 +396,8 @@ export default function WorkPage() {
           </section>
         </AnimatedSection>
       </div>
-      {duty && dutyDetails[duty] && (
+      {duty === '准入规则与策略树' && <DutyAccessModal onClose={() => setDuty(null)} />}
+      {duty && duty !== '准入规则与策略树' && dutyDetails[duty] && (
         <DutyModal title={duty} detail={dutyDetails[duty]} onClose={() => setDuty(null)} />
       )}
     </div>

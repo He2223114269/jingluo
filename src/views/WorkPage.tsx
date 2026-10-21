@@ -7,6 +7,7 @@ import ScaleCards from '@/components/viz/ScaleCards';
 import DutyDetailModal from '@/components/DutyDetailModal';
 import DutyAccessModal from '@/components/DutyAccessModal';
 import RiskLoopMap from '@/components/viz/RiskLoopMap';
+import CaseStudies from '@/components/viz/CaseStudies';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
@@ -18,14 +19,12 @@ import {
   workDuties,
   dutyDetails,
   workFlow,
-  workCases,
   workAutomation,
   workCapability,
   workMilestones,
 } from '@/data/mock';
 
 export default function WorkPage() {
-  const [openCase, setOpenCase] = useState<string | null>(null);
   const [duty, setDuty] = useState<string | null>(null);
   return (
     <div className="min-h-screen pt-24 pb-20 px-4">
@@ -131,125 +130,7 @@ export default function WorkPage() {
         <AnimatedSection>
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">05 核心案例 · CASE STUDIES</div>
-            <div className="space-y-8">
-              {workCases.map((c) => (
-                <div key={c.no} id={`case-${c.no.toLowerCase().replace(' ', '-')}`} className="bg-[#1e293b] border border-[#334155] rounded-xl overflow-hidden scroll-mt-24">
-                  <div className="flex items-center justify-between px-6 py-4 border-b border-[#334155] bg-slate-800/40">
-                    <h3 className="text-base font-semibold text-slate-100">
-                      <span className="text-cyan-400 text-xs mr-2">{c.no}</span>
-                      {c.title}
-                    </h3>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="bg-slate-800/40 rounded-lg p-4">
-                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">业务问题</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{c.problem}</p>
-                      </div>
-                      <div className="bg-slate-800/40 rounded-lg p-4">
-                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">问题定位</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{c.locate}</p>
-                      </div>
-                      <div className="bg-slate-800/40 rounded-lg p-4">
-                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">建模分析</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{c.model}</p>
-                      </div>
-                      <div className="bg-slate-800/40 rounded-lg p-4">
-                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">策略设计</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{c.strategy}</p>
-                      </div>
-                    </div>
-                    <div className="bg-slate-800/40 rounded-lg p-4">
-                      <div className="text-xs font-semibold text-cyan-400 mb-1.5">线上验证</div>
-                      <p className="text-sm text-slate-400 leading-relaxed">{c.verify}</p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-3">
-                      {c.results.map((r, i) => (
-                        <div key={i} className="text-center p-3 rounded-lg bg-cyan-400/5 border border-cyan-400/20">
-                          <div className="text-lg font-bold text-cyan-300">{r.v}</div>
-                          <div className="text-xs text-slate-400 mt-1">{r.k}</div>
-                        </div>
-                      ))}
-                    </div>
-                    {c.contribution && (
-                      <div className="mt-4 bg-slate-800/60 border border-[#334155] rounded-lg p-4">
-                        <div className="text-xs font-semibold text-cyan-400 mb-1.5">我的贡献</div>
-                        <p className="text-sm text-slate-400 leading-relaxed">{c.contribution}</p>
-                      </div>
-                    )}
-                    {c.no === 'Case 01' && (
-                      <DetailDisclosure hint="展开：24 省 4 批迁移怎么控风险">
-                        <MigrationTimeline />
-                        <ul className="space-y-2 text-sm text-slate-400 leading-relaxed">
-                          <li>• 先定档再动配置：客群模拟给出各省分支的目标通过率，避免上线后再来回调。</li>
-                          <li>• 每批切换后回读生产配置，核对值、行数与时间字段；异常批次停止推进。</li>
-                          <li>• 切后跟踪通过率与质态，对偏离标准的分支单独排查，不整体回滚。</li>
-                        </ul>
-                      </DetailDisclosure>
-                    )}
-                    {c.no === 'Case 02' && (
-                      <DetailDisclosure hint="展开：A~E 分档怎么定通过率">
-                        <GradeLadder />
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                          分档的用途是给出可解释的初始配额，避免各省各分支拍脑袋；上线后再按实际质态微调，而不是一次定死。
-                        </p>
-                      </DetailDisclosure>
-                    )}
-                    {c.no === 'Case 03' && (
-                      <DetailDisclosure hint="展开：门店欺诈怎么从特征走到处置">
-                        <FraudFlow />
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                          特征不是一次性规则，而是固化成每日扫描：命中 2 条进人工核查，命中 3 条直接熔断；
-                          门店处置后在监控里持续跟踪其新增进件与逾期变化。
-                        </p>
-                      </DetailDisclosure>
-                    )}
-                    {c.no === 'Case 04' && (
-                      <DetailDisclosure hint="展开：特批到底扭曲了多少">
-                        <SpecialShareChart />
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                          处理方式不是简单剔除数据，而是把特批单独作为一层口径披露，同时修正全量曲线的解读方式。
-                        </p>
-                      </DetailDisclosure>
-                    )}
-                    {c.no === 'Case 05' && (
-                      <DetailDisclosure hint="展开：平台是怎么搭起来的">
-                        <PlatformArchitecture />
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                          目标不是做一个看板，而是让「发现异常 → 定位原因 → 调整配置 → 回读验证」这条链路在同一个系统里跑通。
-                        </p>
-                      </DetailDisclosure>
-                    )}
-                    {c.detail && (
-                      <div className="mt-4">
-                        <button
-                          onClick={() => setOpenCase(openCase === c.no ? null : c.no)}
-                          className="text-sm text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
-                        >
-                          {openCase === c.no ? '收起完整复盘' : '展开完整复盘（业务背景 → 问题发现 → 模型 → 策略 → 上线 → 迭代）'}
-                          <svg
-                            className={`w-3.5 h-3.5 transition-transform ${openCase === c.no ? 'rotate-90' : ''}`}
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                          >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                          </svg>
-                        </button>
-                        {openCase === c.no && (
-                          <div className="mt-4 space-y-3">
-                            {c.detail.map((d, i) => (
-                              <div key={i} className="flex gap-4 bg-slate-800/40 rounded-lg p-4">
-                                <span className="text-xs font-semibold text-cyan-400 shrink-0 w-20 pt-0.5">{d.t}</span>
-                                <p className="text-sm text-slate-400 leading-relaxed">{d.c}</p>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <CaseStudies />
           </div>
         </AnimatedSection>
 

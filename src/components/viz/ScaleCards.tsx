@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { scaleCards } from '@/data/mock';
+import { scaleCards, provinceMap, topSuppliers, topStores } from '@/data/mock';
+import ProvinceMap from '@/components/viz/ProvinceMap';
 
 type Card = (typeof scaleCards)[number];
 
@@ -73,28 +74,71 @@ export default function ScaleCards() {
                 </div>
 
                 <div>
-                  <div className="text-[11px] text-slate-500 mb-2">{card.barsNote}</div>
-                  <div className="space-y-2">
-                    {card.bars.map((b) => (
-                      <div key={b.name} className="flex items-center gap-3">
-                        <div className="w-20 text-[10px] text-slate-500 truncate text-right">{b.name}</div>
-                        <div className="flex-1 h-2 rounded-full bg-slate-800">
-                          <motion.div
-                            initial={{ width: 0 }}
-                            animate={{ width: `${Math.max(b.pct, 2)}%` }}
-                            transition={{ duration: 0.45, ease: 'easeOut' }}
-                            className="h-2 rounded-full bg-cyan-400/70"
-                          />
-                        </div>
+                  {card.key === 'province' ? (
+                    <>
+                      <div className="text-[11px] text-slate-500 mb-1">中国地图 · 按单量着色（悬停看金额与首单）</div>
+                      <ProvinceMap data={provinceMap} compact height={280} />
+                    </>
+                  ) : card.key === 'supplier' ? (
+                    <>
+                      <div className="text-[11px] text-slate-500 mb-2">代理商 Top 8（按单量）</div>
+                      <RankList rows={topSuppliers.map((x) => ({ name: x.name, orders: x.orders, sub: `${x.stores} 家门店` }))} />
+                    </>
+                  ) : card.key === 'store' ? (
+                    <>
+                      <div className="text-[11px] text-slate-500 mb-2">门店 Top 8（按单量）</div>
+                      <RankList rows={topStores.map((x) => ({ name: x.name, orders: x.orders, sub: x.province }))} />
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-[11px] text-slate-500 mb-2">{card.barsNote}</div>
+                      <div className="space-y-2">
+                        {card.bars.map((b) => (
+                          <div key={b.name} className="flex items-center gap-3">
+                            <div className="w-20 text-[10px] text-slate-500 truncate text-right">{b.name}</div>
+                            <div className="flex-1 h-2 rounded-full bg-slate-800">
+                              <motion.div
+                                initial={{ width: 0 }}
+                                animate={{ width: `${Math.max(b.pct, 2)}%` }}
+                                transition={{ duration: 0.45, ease: 'easeOut' }}
+                                className="h-2 rounded-full bg-cyan-400/70"
+                              />
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+  );
+}
+
+
+function RankList({ rows }: { rows: { name: string; orders: number; sub?: string }[] }) {
+  const max = Math.max(...rows.map((r) => r.orders));
+  return (
+    <div className="space-y-2">
+      {rows.map((r, i) => (
+        <div key={r.name}>
+          <div className="flex items-center justify-between text-[11px] mb-0.5 gap-2">
+            <span className="text-slate-300 truncate">
+              <span className="text-slate-500 mr-1.5">{i + 1}</span>{r.name}
+            </span>
+            <span className="text-slate-400 whitespace-nowrap">
+              {r.orders.toLocaleString()}{r.sub ? ` · ${r.sub}` : ''}
+            </span>
+          </div>
+          <div className="h-1.5 rounded-full bg-slate-800">
+            <div className="h-1.5 rounded-full bg-cyan-400/70" style={{ width: `${(r.orders / max) * 100}%` }} />
+          </div>
+        </div>
+      ))}
     </div>
   );
 }

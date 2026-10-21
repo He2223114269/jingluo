@@ -7,7 +7,7 @@ const ReactECharts = dynamic(() => import('echarts-for-react'), { ssr: false });
 
 interface Row { name: string; label: string; orders: number; amt: number; first: string }
 
-export default function ProvinceMap({ data }: { data: Row[] }) {
+export default function ProvinceMap({ data, compact = false, height = 420 }: { data: Row[]; compact?: boolean; height?: number }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -24,9 +24,9 @@ export default function ProvinceMap({ data }: { data: Row[] }) {
 
   if (!ready) {
     return (
-      <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-5">
-        <div className="text-sm font-semibold text-slate-200 mb-3">省份覆盖</div>
-        <div className="h-[380px] flex items-center justify-center text-sm text-slate-500">地图加载中…</div>
+      <div className={compact ? '' : 'bg-[#1e293b] border border-[#334155] rounded-xl p-5'}>
+        {!compact && <div className="text-sm font-semibold text-slate-200 mb-3">省份覆盖</div>}
+        <div style={{ height }} className="flex items-center justify-center text-sm text-slate-500">地图加载中…</div>
       </div>
     );
   }
@@ -78,15 +78,19 @@ export default function ProvinceMap({ data }: { data: Row[] }) {
   };
 
   return (
-    <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-5">
-      <div className="flex items-center justify-between mb-2">
-        <div className="text-sm font-semibold text-slate-200">省份覆盖</div>
-        <div className="text-[11px] text-slate-500">按单量着色 · 悬停查看金额与首单时间</div>
-      </div>
-      <ReactECharts option={option} style={{ height: 420, width: '100%' }} notMerge />
-      <p className="text-[11px] text-slate-500 mt-1">
-        29 省有实际订单；颜色越深单量越大，湖南占 70%。空白省份为尚未放量。
-      </p>
+    <div className={compact ? '' : 'bg-[#1e293b] border border-[#334155] rounded-xl p-5'}>
+      {!compact && (
+        <div className="flex items-center justify-between mb-2">
+          <div className="text-sm font-semibold text-slate-200">省份覆盖</div>
+          <div className="text-[11px] text-slate-500">按单量着色 · 悬停查看金额与首单时间</div>
+        </div>
+      )}
+      <ReactECharts option={option} style={{ height, width: '100%' }} notMerge />
+      {!compact && (
+        <p className="text-[11px] text-slate-500 mt-1">
+          29 省有实际订单；颜色越深单量越大，湖南占 70%。空白省份为尚未放量。
+        </p>
+      )}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import DetailDisclosure from '@/components/DetailDisclosure';
 import ScaleCards from '@/components/viz/ScaleCards';
 import DutyDetailModal from '@/components/DutyDetailModal';
 import DutyAccessModal from '@/components/DutyAccessModal';
+import RiskLoopMap from '@/components/viz/RiskLoopMap';
 import { ScoreLineDiagram, MigrationTimeline, FraudFlow, GradeLadder, SpecialShareChart, PlatformArchitecture, BusinessChain, ScaleDetail } from '@/components/viz/WorkVisuals';
 import {
   workIdentity,
@@ -110,32 +111,8 @@ export default function WorkPage() {
         <AnimatedSection>
           <div className="mb-14">
             <div className="text-sm font-semibold text-cyan-400 mb-4">04 核心工作流 · RISK CONTROL LOOP</div>
-            <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-6">
-              <div className="flex flex-col items-center">
-                {workFlow.map((step, i) => (
-                  <div key={i} className="flex flex-col items-center">
-                    <div className="flex items-center gap-3 bg-slate-800/60 border border-[#334155] rounded-lg px-4 py-2.5">
-                      <span className="text-xs text-cyan-400 font-mono">{String(i + 1).padStart(2, '0')}</span>
-                      <span className="text-sm text-slate-200">{step}</span>
-                    </div>
-                    {i < workFlow.length - 1 ? (
-                      <div className="flex flex-col items-center py-1">
-                        <svg className="w-4 h-4 text-slate-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                      </div>
-                    ) : (
-                      <div className="flex flex-col items-center py-1">
-                        <span className="text-cyan-400/70 text-xs mb-1">↺ 持续迭代</span>
-                        <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-
+            <RiskLoopMap />
+            <div className="mt-4">
               <DetailDisclosure hint="展开：通过率到底怎么决定（分数线机制）">
                 <p className="text-sm text-slate-400 leading-relaxed">
                   配置的通过率不是「按比例抽签」，而是映射成一条模型分值的分数线。用户评分越过这条线即通过。

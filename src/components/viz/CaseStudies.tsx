@@ -1,6 +1,7 @@
 'use client';
 
-import { GradeLadder, SpecialShareChart, PlatformArchitecture } from '@/components/viz/WorkVisuals';
+import { SpecialShareChart, PlatformArchitecture } from '@/components/viz/WorkVisuals';
+import GradePassModel from '@/components/viz/GradePassModel';
 
 function CaseShell({ no, title, kicker, children }: { no: string; title: string; kicker: string; children: React.ReactNode }) {
   return (
@@ -111,7 +112,7 @@ function CaseGrade() {
       <p className="text-sm text-slate-300 leading-relaxed">
         统一通过率无法适配各省分支：优质分支被压量，高风险分支反而放量。改法是按质态分档，再逐档定阈值。
       </p>
-      <GradeLadder />
+      <GradePassModel />
       <Tradeoff
         chose="按半年质态分 A–E 五档，优质上调、劣质压降"
         rejected="全省统一压降或统一放量"

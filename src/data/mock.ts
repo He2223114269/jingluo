@@ -7,6 +7,7 @@ export interface ProjectItem {
   tags: string[];
   status: string;
   teamSize?: string;
+  role?: string;
   duration?: string;
 }
 
@@ -75,6 +76,7 @@ export const projects: ProjectItem[] = [
     description: '在 24 省模型迁移的资损评估中，发现并修正一个「结果自洽、公式正确、但结论完全错误」的系统性低估（小样本零逾期）；并识别出 5 个省的评级映射异常，避免用失真数据做分批上线决策。',
     tags: ['数据审计', '口径治理', '贝叶斯收缩', 'SQL / StarRocks'],
     status: '已完成',
+    role: '独立完成',
     teamSize: '独立完成',
     duration: '2026.09',
   },
@@ -84,6 +86,7 @@ export const projects: ProjectItem[] = [
     description: '搭建完整的风控决策分析平台（GitHub开源），实现从数据采集、策略分析、评分卡建模到可视化看板的全链路，覆盖订单全生命周期监控。',
     tags: ['Next.js', 'FastAPI', 'Python', 'ECharts'],
     status: '迭代中',
+    role: '独立开发',
   },
   {
     id: 'real-time-risk',
@@ -91,6 +94,7 @@ export const projects: ProjectItem[] = [
     description: '独立负责实时授信业务风控，基于XGBoost与决策树构建信用评分模型，设计风控流程树，日均处理超千笔授信申请。',
     tags: ['XGBoost', '决策树', '策略优化', 'SQL'],
     status: '已上线',
+    role: '独立负责',
   },
   {
     id: 'deep-mf',
@@ -98,6 +102,7 @@ export const projects: ProjectItem[] = [
     description: '主持省级大创项目，提出基于超图正则化的深度非负矩阵分解方法，授权发明专利1项，在多个公开数据集平均准确率达63.4%。',
     tags: ['深度学习', '非负矩阵分解', '超图', 'Python'],
     status: '已完成',
+    role: '项目负责人',
     teamSize: '2人（导师指导 + 本人执行）',
     duration: '2023.03 - 2025.06',
   },
@@ -107,6 +112,7 @@ export const projects: ProjectItem[] = [
     description: '第九届互联网+创新创业大赛国家三等奖（项目负责人）。构建"污水厂→污泥处理→水泥厂"完整产业链，以负压低沸烘干技术将污泥含水率从80%降至30%以下，压缩制成再生燃料实现污泥资源化利用。',
     tags: ['污泥资源化', '互联网+国三', '专利', '创新创业'],
     status: '已完成',
+    role: '项目负责人',
     teamSize: '项目负责人',
     duration: '2023.07 - 2024.06',
   },
@@ -116,6 +122,7 @@ export const projects: ProjectItem[] = [
     description: '第十六届节能减排社会实践与科技竞赛国家三等奖（项目创始人）。基于LSTM构建用电负荷预测模型，分析用户用电数据与行为模式，提供针对性节电建议，测试可减少12-21%电费。',
     tags: ['LSTM', '时序预测', '物联网', '节能减排'],
     status: '已完成',
+    role: '项目创始人',
     teamSize: '项目创始人',
     duration: '2023.04 - 2023.07',
   },

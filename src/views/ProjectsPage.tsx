@@ -65,8 +65,8 @@ export default function ProjectsPage() {
                       <div className="text-sm font-medium text-slate-300">{project.duration || '6个月'}</div>
                     </div>
                     <div className="flex-1 p-3 rounded-lg bg-slate-800/50 text-center">
-                      <div className="text-xs text-slate-500 mb-1">团队规模</div>
-                      <div className="text-sm font-medium text-slate-300">{project.teamSize || '3-5人'}</div>
+                      <div className="text-xs text-slate-500 mb-1">承担角色</div>
+                      <div className="text-sm font-medium text-cyan-300/90">{project.role || '独立完成'}</div>
                     </div>
                   </div>
                 </div>

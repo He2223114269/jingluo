@@ -4,13 +4,13 @@ import { useMemo, useState } from 'react';
 import AnimatedSection from '@/components/AnimatedSection';
 import { thinkingItems, thinkingSummary } from '@/data/thinking';
 import type { ThinkingItem } from '@/data/thinking';
-import ThinkingDetailModal from '@/components/ThinkingDetailModal';
+import ReportModal from '@/components/ReportModal';
 
 const CATS = ['全部', '门店', '套餐', '策略', '模型', '监控', '治理', '质态', '对外', '工程', '事故'];
 
 export default function ThinkingPage() {
   const [cat, setCat] = useState('全部');
-  const [selected, setSelected] = useState<ThinkingItem | null>(null);
+  const [reportItem, setReportItem] = useState<ThinkingItem | null>(null);
 
   const filtered = useMemo(
     () => (cat === '全部' ? thinkingItems : thinkingItems.filter((x) => x.cat === cat)),
@@ -73,15 +73,17 @@ export default function ThinkingPage() {
               </div>
               <div className="space-y-3">
                 {items.map((item) => (
-                  <button key={item.title} type="button" onClick={() => setSelected(item)}
-                    className="w-full text-left rounded-xl border border-[#334155] bg-[#1e293b] p-4 hover:border-cyan-400/25 hover:bg-slate-800/30 transition-colors group">
+                  <button key={item.title} type="button" onClick={() => item.report && setReportItem(item)}
+                    className={`w-full text-left rounded-xl border border-[#334155] bg-[#1e293b] p-4 transition-colors ${
+                      item.report ? 'hover:border-cyan-400/25 hover:bg-slate-800/30 cursor-pointer group' : 'cursor-default'
+                    }`}>
                     <div className="flex items-center gap-2 mb-1.5">
                       <span className="text-[10px] font-mono text-slate-500">{item.date.slice(5)}</span>
                       <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300/90 border border-cyan-400/20">{item.cat}</span>
                     </div>
                     <h3 className="text-[14px] font-semibold text-slate-100 mb-1.5 group-hover:text-cyan-200 transition-colors flex items-center gap-2">
                       {item.title}
-                      <span className="text-[9px] text-slate-600 group-hover:text-cyan-400">详情 →</span>
+                      {item.report && <span className="text-[9px] text-slate-600 group-hover:text-cyan-400">报告原文 →</span>}
                     </h3>
                     <p className="text-[12px] text-slate-400 leading-relaxed">{item.finding}</p>
                     {item.tags && (
@@ -123,7 +125,7 @@ export default function ThinkingPage() {
           </section>
         </AnimatedSection>
       </div>
-      {selected && <ThinkingDetailModal item={selected} onClose={() => setSelected(null)} />}
+      {reportItem?.report && <ReportModal slug={reportItem.report} title={reportItem.title} onClose={() => setReportItem(null)} />}
     </div>
   );
 }

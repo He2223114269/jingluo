@@ -5,6 +5,7 @@ export type ThinkingItem = {
   title: string;
   finding: string;
   tags?: string[];
+  report?: string;
   detail: ThinkingDetail[];
 };
 
@@ -13,6 +14,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-05-12', cat: '门店', title: '儋州金鹏门店刷单排查',
     finding: '单日 8 单全拒、同人反复提交，判断为批量进件而非模型失效。',
     tags: ['门店', '异常进件'],
+    report: 'r01_danzhou',
     detail: [
       { t: '背景', c: '5 月 10 日儋州整体通过率跌到 35%，20 单只过 7 单，需要判断是策略收紧还是局部异常。' },
       { t: '数据', c: '金鹏 1 店当日 8 单全部被拒，占当日拒量 61.5%；8 单均为移动用户、在网 4~5 个月、灵犀分 51~57，属低分客群。' },
@@ -24,6 +26,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-05-20', cat: '套餐', title: '湖南公众：融合 vs 单卡',
     finding: '融合通过率 43.6% vs 单卡 21.7%，逾期 2.8% vs 5.9%，单卡风险约为融合 2.1 倍。',
     tags: ['套餐', '客群'],
+    report: 'r02_hunan_pack',
     detail: [
       { t: '背景', c: '套餐结构差异是否影响风险，此前没有量化，策略只能按客群粗略分层。' },
       { t: '数据', c: '湖南公众近一年 20.9 万申请：融合通过率 43.6%、逾期率 2.8%；单卡通过率 21.7%、逾期率 5.9%。' },
@@ -35,6 +38,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-05-28', cat: '治理', title: '特批白名单对 Vintage 的扭曲',
     finding: '特批不走策略直接放行，占比升至 43.7%，全量曲线被结构性稀释。',
     tags: ['口径', 'Vintage'],
+    report: 'r03_tepi_vintage',
     detail: [
       { t: '背景', c: 'Vintage 曲线异常下移，但一线反馈实际逾期在上升，怀疑口径被客群结构污染。' },
       { t: '数据', c: '特批占比由 2025-10 前的 13% 升至 2026-02 的 43.7%；湖南特批 1.7 万单，未还率 5.85%，高于普通客群的 3.76%。' },
@@ -46,6 +50,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-06-12', cat: '门店', title: '贵州 1 月公众逾期率暴跌：3 家门店欺诈',
     finding: '3 家门店贡献 38% 逾期，单店放量 5~6 倍，属集中欺诈。',
     tags: ['门店', '欺诈'],
+    report: 'r04_guizhou_fraud',
     detail: [
       { t: '背景', c: '贵州 1 月账期公众逾期率断崖式上升，需要区分是客群整体恶化还是局部门店问题。' },
       { t: '数据', c: '3 家门店贡献当月 38% 的逾期；单店放量是平时的 5~6 倍；新客占比与异网占比同时偏高。' },
@@ -68,6 +73,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-15', cat: '事故', title: '甘肃补贴比例口径错误与未去重',
     finding: '补贴比例取错字段且未按用户去重，结论作废重算。',
     tags: ['口径', '事故'],
+    report: 'r05_gansu_incident',
     detail: [
       { t: '问题', c: '补贴比例取了错误字段，且按订单而非用户统计，导致重复计算。' },
       { t: '影响', c: '省级补贴结论整体偏差，已发出的判断需要撤回重算。' },
@@ -79,6 +85,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-22', cat: '策略', title: '湖南 VIP 缩量测算',
     finding: '按客群分层测算缩量对通过率与资损的影响，把终损控制在 5.00% 以内。',
     tags: ['VIP', '资损'],
+    report: 'r06_vip_cut',
     detail: [
       { t: '背景', c: 'VIP 客群占比上升带来资损压力，需要评估缩量幅度与代价。' },
       { t: '方法', c: '分客群测算通过率下降对放款规模、资损与终损的影响，做多档方案对比。' },
@@ -90,6 +97,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-22', cat: '模型', title: '贵州模型迁移（gz_v1）',
     finding: '完成贵州客群映射与模型注册，模拟与生产逐档比对后再上线。',
     tags: ['模型', '迁移'],
+    report: 'r07_gz_model',
     detail: [
       { t: '背景', c: '贵州需要独立模型体系，不能直接复用江西分支。' },
       { t: '做法', c: '梳理客群切分变量、映射 score_code、注册模型版本，先在模拟环境跑通。' },
@@ -101,6 +109,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-29', cat: '模型', title: '模拟 vs 生产质态差异归因',
     finding: '同一批人在两套分类器下落到不同分支，导致分支质态与模拟不一致。',
     tags: ['模型', '归因'],
+    report: 'r08_sim_vs_prod',
     detail: [
       { t: '现象', c: '模拟数据里分支 8 逾期率 10.94%，生产测试数据只有 1.95%，差异巨大。' },
       { t: '归因', c: '模拟与生产的分类器不同，同一批人被分到不同分支；分支 8 在两边对应的是不同客群。' },
@@ -112,6 +121,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-30', cat: '对外', title: '全国路由模式影响分析',
     finding: '按“通过率 × 额度满足率”分析全国路由的逆向选择，形成对外沟通材料。',
     tags: ['对外', '路由'],
+    report: 'r09_routing',
     detail: [
       { t: '背景', c: '全国路由按通过率与额度满足率分配份额，各省对规则理解不一致。' },
       { t: '方法', c: '用通过率与额度满足率两个维度还原路由结果，识别低满足率省份获得更多份额的现象。' },
@@ -123,6 +133,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-07-31', cat: '工程', title: '风控参数校验机制（plan / validate / push）',
     finding: '配置变更固定三步：录计划 → 校验 → 推送 → 回读，禁止手写 UPDATE 直连生产。',
     tags: ['配置', '治理'],
+    report: 'r10_param_check',
     detail: [
       { t: '背景', c: '早期配置靠手工改库，出现过漏改、错改和覆盖事故。' },
       { t: '机制', c: 'plan 记录变更意图；validate 校验覆盖度、合理性与跨表一致性；push 走 API 写入并回读。' },
@@ -134,6 +145,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-05', cat: '监控', title: '额度满足率首算',
     finding: '全国 93.82%；广西 76.71%、浙江 74.66% 偏低，湖南 99.19% 偏高。',
     tags: ['额度', '指标'],
+    report: 'r11_quota',
     detail: [
       { t: '定义', c: '通过的订单中，授信额度覆盖订单金额的比例；用户实际能否用信的关键指标。' },
       { t: '数据', c: '全国 93.82%；广西 76.71%、浙江 74.66% 明显偏低，湖南 99.19%、甘肃 99.53% 偏高。' },
@@ -145,6 +157,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-10', cat: '策略', title: '广西通过率调控评估',
     finding: '结合半年质态与标准通过率，给出分支级上调/下调方案。',
     tags: ['通过率', '策略'],
+    report: 'r21_gx_control',
     detail: [
       { t: '背景', c: '广西实际通过率与标准偏离，需要判断是整体调整还是分支调整。' },
       { t: '方法', c: '按省 × 分支看半年逾期率，对照标准通过率确定总量方向，再分分支定档。' },
@@ -156,6 +169,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-12', cat: '门店', title: '门店逾期质态排查与批量处置',
     finding: '按放量、逾期集中、同人重复等特征筛查，累计拉黑 18 家门店 + 亚速系 12 家。',
     tags: ['门店', '处置'],
+    report: 'r22_store_check',
     detail: [
       { t: '方法', c: '多维特征交叉：放量暴增、逾期集中、同人反复提交、申请集中度、套餐单一。' },
       { t: '处置', c: '命中 ≥2 条核查、≥3 条熔断；分级处置为拉黑、拉灰、监管。' },
@@ -167,6 +181,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-13', cat: '策略', title: '处理措施影响评估',
     finding: '对已执行的套餐管控与分支调整做前后对比，量化实际变化。',
     tags: ['评估', '策略'],
+    report: 'r23_measure_impact',
     detail: [
       { t: '背景', c: '一轮管控执行后，需要判断措施是否真的起作用，而不是只看配置改了没有。' },
       { t: '方法', c: '对比执行前后的通过率、分支结构与客群占比，区分配置效应与结构效应。' },
@@ -178,6 +193,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-14', cat: '策略', title: '首轮月度逐省通过率双向调控',
     finding: '10 省执行：质态差的压降、质态好的上调，建立月度固定复盘机制。',
     tags: ['通过率', '机制'],
+    report: 'r12_monthly_first',
     detail: [
       { t: '原则', c: '以半年质态为准绳：质态差的分支优先压降，质态好的分支优先提升，不按单日数据机械调整。' },
       { t: '范围', c: '首轮覆盖贵州、广西、湖南、江西、甘肃、海南、四川、江苏、吉林、浙江等 10 省。' },
@@ -189,6 +205,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-24', cat: '工程', title: '配置更新机制全面梳理',
     finding: '统一 table_filters 为单一配置源，明确同步视图与推送视图范围。',
     tags: ['配置', '工程'],
+    report: 'r24_config_review',
     detail: [
       { t: '问题', c: '同步、推送、校验三处各自维护筛选条件，改一处漏一处，存在覆盖风险。' },
       { t: '改造', c: '把筛选条件收敛到 table_filters.py：SYNC_FILTERS 负责拉取，PUSH_FILTERS 负责回写。' },
@@ -200,6 +217,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-25', cat: '策略', title: '23 省批量接入 2608 评级体系',
     finding: '按分支质态分 A–E 五档，逐档定通过率，缺失分支补 E 档。',
     tags: ['评级', '迁移'],
+    report: 'r13_2608_23',
     detail: [
       { t: '背景', c: '统一通过率无法适配各省分支质态，需要一套可解释的分档规则。' },
       { t: '规则', c: 'A 档 ≤4% 给 90%，逐档递减至 E 档 >10% 仅 2%；缺失分支补 E 档，避免默认放行。' },
@@ -211,6 +229,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-26', cat: '模型', title: '2608 分级 vs 四维固定通过率',
     finding: '同一批客群下，分级策略的通过客群加权逾期率更低。',
     tags: ['模型', '对比'],
+    report: 'r14_2608_vs',
     detail: [
       { t: '问题', c: '分档定通过率与四维固定通过率，哪种方式更优？' },
       { t: '方法', c: '用同一批客群分别按两种方案模拟，比较通过客群的加权逾期率与通过率。' },
@@ -222,6 +241,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-26', cat: '模型', title: '通融模型上线模拟与效果评估',
     finding: 'A 方案通过率 39.4%、资损 4.8%，形成上线前评估基线。',
     tags: ['模型', '上线'],
+    report: 'r15_tongrong',
     detail: [
       { t: '背景', c: '通融实时授信模型上线前，需要评估不同方案对通过率与资损的影响。' },
       { t: '方法', c: '按客群分层模拟，比较三档、四维与分级方案的通过率、资损与结构。' },
@@ -233,6 +253,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-08-27', cat: '监控', title: '资损目标达标对比',
     finding: '24 省逐省对照资损目标（×1.2 口径），标出未达标省份。',
     tags: ['资损', '监控'],
+    report: 'r16_loss_target',
     detail: [
       { t: '口径', c: '按终损预估与目标对比，考虑业务波动采用 ×1.2 容忍口径。' },
       { t: '结果', c: '24 省中多数达标，少数省份因客群结构或新展业偏高。' },
@@ -244,6 +265,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-09-11', cat: '治理', title: '四川 pack_price 口径失真导致错分',
     finding: '套餐价格字段口径错误导致客群错分，修正后重跑评估。',
     tags: ['口径', '套餐'],
+    report: 'r17_pack_price',
     detail: [
       { t: '问题', c: 'pack_price 字段在不同来源含义不一致，导致套餐分档错误、客群被错分。' },
       { t: '影响', c: '基于错分客群的通过率与质态结论不可用。' },
@@ -255,6 +277,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-09-15', cat: '质态', title: '各省质态异常与管控汇总',
     finding: '四川/广西/贵州/海南/宁夏/湖南/甘肃逐省：定位 → 执行 → 效果 → 跟进。',
     tags: ['质态', '汇总'],
+    report: 'r18_prov_quality',
     detail: [
       { t: '结构', c: '每省统一五段：问题定位、管控执行核对、执行效果、结论与建议、脚本与证据。' },
       { t: '内容', c: '覆盖高直降套餐管控、优质分支上调、异网客群压降、门店处置等具体措施。' },
@@ -266,6 +289,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-09-16', cat: '监控', title: '业务级敞口与系统性共因',
     finding: '贵州在贷仅湖南一半但敞口第一；2026-01 全国峰值与特批放量窗口重合。',
     tags: ['敞口', '资损'],
+    report: 'r19_exposure',
     detail: [
       { t: '方法', c: '以“在贷余额 × 终损预估”计算省级风险敞口，而不是只看在贷规模。' },
       { t: '结论', c: '贵州在贷余额约为湖南一半，但终损更高，敞口排序第一，优先级需要重排。' },
@@ -277,6 +301,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-09-22', cat: '策略', title: '终损 5.2% / 8% 目标下的通过率配额重算',
     finding: '按分支级资损加权反推各省配额，A→E 依次放开。',
     tags: ['资损', '配额'],
+    report: 'r25_quota_recalc',
     detail: [
       { t: '目标', c: '在终损 5.2% 与 8% 两档目标下，测算各省可承受的通过率上限。' },
       { t: '方法', c: '按分支历史质态与资损贡献加权，优质分支多给量，高风险分支保留最低配额。' },
@@ -288,6 +313,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-09-23', cat: '策略', title: '湖南先享合约配额方案',
     finding: '针对先享合约客群单独测算通过率与资损，形成独立配额与批次。',
     tags: ['先享合约', '配额'],
+    report: 'r26_xianxiang',
     detail: [
       { t: '背景', c: '先享合约客群与实时授信不同，不能共用同一套通过率。' },
       { t: '方法', c: '按客群与套餐结构单独测算，评估通过率变化对资损的影响。' },
@@ -321,6 +347,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-10-08', cat: '模型', title: '外部数据断供：决策树重建前置评估',
     finding: '填充救不了缺失的外部数据，需用内部特征重建分裂变量。',
     tags: ['模型', '外部数据'],
+    report: 'r20_ext_data',
     detail: [
       { t: '背景', c: '在网时长、在网状态、本异网与外部评分可能断供，需要评估影响与替代方案。' },
       { t: '结论', c: '外部数据缺失无法靠填充或历史回填兜住：新办订单以新入网客群为主，中性化约等于 −1。' },
@@ -332,6 +359,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-10-09', cat: '工程', title: '外部分风控接口迁移',
     finding: '还原 AES-128-ECB/PKCS7 + HEX 报文规范，自研客户端并做黄金向量测试。',
     tags: ['接口', '工程'],
+    report: 'r31_ext_api',
     detail: [
       { t: '问题', c: '外部风控接口只有 Java 示例，需要在 Python 侧复现加密与报文格式。' },
       { t: '实现', c: '还原 AES-128-ECB/PKCS7 加密、密文 HEX 编码与字段映射，封装成客户端。' },
@@ -343,6 +371,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-10-14', cat: '质态', title: '四川：淘顺 vs 通融 Vintage 与客群差异',
     finding: '分化发生在 2~4 期，指向还款能力/意愿与在网稳定性，而非纯准入筛选。',
     tags: ['Vintage', '对比'],
+    report: 'r27_sichuan_vintage',
     detail: [
       { t: '现象', c: '同一省内两套体系的 vintage 曲线分化，但首期表现接近。' },
       { t: '数据', c: '两边 mob1 都在 0.2~0.6%，分化集中在第 2~4 期。' },
@@ -354,6 +383,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-10-16', cat: '治理', title: '淘顺实时授信业务总览与交接材料',
     finding: '按业务维度整理链路、策略、客群、质态、配置流程与可优化方向。',
     tags: ['交接', '治理'],
+    report: 'r28_handover',
     detail: [
       { t: '结构', c: '一页看懂 → 策略体系 → 客群与套餐 → 质态与敞口 → 日常监控 → 配置流程 → 可优化方向。' },
       { t: '用途', c: '给接手人用的业务底稿，不套个人职业叙事。' },
@@ -365,6 +395,7 @@ export const thinkingItems: ThinkingItem[] = [
     date: '2026-10-19', cat: '工程', title: '本地数据库全链路迁移方案',
     finding: '按脚本实际使用频次圈表，设计分批迁移、水位续跑与对账。',
     tags: ['数据', '工程'],
+    report: 'r29_db_migration',
     detail: [
       { t: '背景', c: '本地缺少生产数据，无法支撑全链路分析与验证。' },
       { t: '选表', c: '按仓库与脚本实际引用频次圈定核心表，核对源端行数、体积与本地容量。' },

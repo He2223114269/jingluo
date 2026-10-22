@@ -31,11 +31,13 @@ export default function GradeFlowSankey() {
   const passH = totalPass * SCALE;
   const rejH = (100 - totalPass) * SCALE;
 
+  // 通过客群按贡献从大到小排序，避免与左侧同序导致连线全部水平
   let py = Y0;
-  const rp = left.map((s) => { const y = py; py += s.appH; return { ...s, y }; });
+  const rp = [...left].sort((a, b) => b.app - a.app).map((s) => { const y = py; py += s.appH; return { ...s, y }; });
   const rejTop = Y0 + passH + 26;
   let ry = rejTop;
   const rr = left.map((s) => { const y = ry; ry += s.rejH; return { ...s, y }; });
+  const passSlot = new Map(rp.map((s) => [s.g, s]));
 
   const X0 = 110, X1 = 250, X2 = 540, X3 = 680;
   const mid = (X1 + X2) / 2;
@@ -63,11 +65,14 @@ export default function GradeFlowSankey() {
         ))}
 
         {/* 通过流 */}
-        {rp.map((s) => (
-          <path key={`p${s.g}`}
-            d={`M ${X1} ${s.y} C ${mid} ${s.y}, ${mid} ${s.y}, ${X2} ${s.y} L ${X2} ${s.y + s.appH} C ${mid} ${s.y + s.appH}, ${mid} ${s.y + s.appH}, ${X1} ${s.y + s.appH} Z`}
-            fill={s.color} opacity={0.45} />
-        ))}
+        {left.map((s) => {
+          const t = passSlot.get(s.g)!;
+          return (
+            <path key={`p${s.g}`}
+              d={`M ${X1} ${s.y} C ${mid} ${s.y}, ${mid} ${t.y}, ${X2} ${t.y} L ${X2} ${t.y + t.appH} C ${mid} ${t.y + t.appH}, ${mid} ${s.y + s.appH}, ${X1} ${s.y + s.appH} Z`}
+              fill={s.color} opacity={0.45} />
+          );
+        })}
 
         {/* 拒绝流 */}
         {rr.map((r, i) => {

@@ -16,6 +16,7 @@ const H = 280, Y0 = 34, SCALE = H / 100;
 
 export default function GradeFlowSankey() {
   const [state, setState] = useState(() => BASE.map((b) => ({ share: b.share, passRate: b.passRate })));
+  const [open, setOpen] = useState(false);
   const sumShare = state.reduce((a, b) => a + b.share, 0) || 1;
 
   const calc = useMemo(() => {
@@ -60,13 +61,21 @@ export default function GradeFlowSankey() {
 
   return (
     <div className="bg-slate-800/40 border border-[#334155] rounded-lg p-4">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-[11px] text-slate-400">拖动滑块调整客群占比与通过率，观察右侧通过客群结构与逾期率变化</span>
-        <button onClick={() => setState(BASE.map((b) => ({ share: b.share, passRate: b.passRate })))}
-          className="text-[10px] px-2 py-1 rounded border border-[#334155] text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">重置</button>
+      <div className="flex items-center justify-between gap-3 mb-2">
+        <span className="text-[11px] text-slate-400">客群流向与通过结构</span>
+        <div className="flex items-center gap-2">
+          {open && (
+            <button onClick={() => setState(BASE.map((b) => ({ share: b.share, passRate: b.passRate })))}
+              className="text-[10px] px-2 py-1 rounded border border-[#334155] text-slate-400 hover:text-slate-200 hover:bg-slate-800/60">重置</button>
+          )}
+          <button onClick={() => setOpen(!open)}
+            className="text-[10px] px-2 py-1 rounded border border-cyan-400/30 text-cyan-300 hover:bg-cyan-400/10">
+            {open ? '收起参数 ▲' : '调整参数 ▾'}
+          </button>
+        </div>
       </div>
 
-      <div className="grid lg:grid-cols-[1.15fr_1fr] gap-4">
+      <div>
         {/* 图 */}
         <div>
           <svg viewBox="0 0 640 360" className="w-full h-auto">
@@ -106,8 +115,9 @@ export default function GradeFlowSankey() {
           </svg>
         </div>
 
-        {/* 控制 */}
-        <div className="space-y-3">
+        {/* 控制：默认收起 */}
+        {open && (
+        <div className="mt-3 grid sm:grid-cols-2 gap-2">
           {BASE.map((b, i) => (
             <div key={b.g} className="rounded-lg border border-[#334155] bg-slate-900/30 p-2.5">
               <div className="flex items-center justify-between text-[10px] mb-1.5">
@@ -130,8 +140,9 @@ export default function GradeFlowSankey() {
               </div>
             </div>
           ))}
-          <p className="text-[9px] text-slate-600 leading-relaxed">占比总和自动归一为 100%；右侧通过客群按贡献从大到小排列。A/E 的初始通过率为既定方案，中间档为示例。</p>
+          <p className="text-[9px] text-slate-600 leading-relaxed sm:col-span-2">占比总和自动归一为 100%；右侧通过客群按贡献从大到小排列。A/E 的初始通过率为既定方案，中间档为示例。</p>
         </div>
+        )}
       </div>
 
       <div className="mt-3 grid grid-cols-3 gap-2">

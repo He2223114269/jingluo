@@ -8,6 +8,10 @@ import ReportModal from '@/components/ReportModal';
 
 const monthlyReports = [
   { title: '淘顺实时授信月报（2026-09）', date: '2026-09', desc: '12 sheet + 正文，含分省下钻与管控效果追踪', href: '/reports/monthly/r34_monthly_2026-09.html' },
+  { title: '淘顺实时授信月报（2026-08）', date: '2026-08', desc: '文档在线查看', view: '/reports/monthly/r40_monthly_2026-08.html' },
+  { title: '淘顺实时授信月报（2026-07）', date: '2026-07', desc: '文档在线查看', view: '/reports/monthly/r39_monthly_2026-07.html' },
+  { title: '淘顺实时授信月报（2026-05）', date: '2026-05', desc: '文档在线查看', view: '/reports/monthly/r38_monthly_2026-05.html' },
+  { title: '淘顺实时授信月报（2026-04）', date: '2026-04', desc: '文档在线查看', view: '/reports/monthly/r37_monthly_2026-04.html' },
   { title: '9 月重点省份分析', date: '2026-09', desc: '涨幅省份下钻、原因拆解与关注点', slug: 'r35_monthly_prov_2026-09' },
   { title: '8 月月报文本提取', date: '2026-08', desc: '月度结论与分省要点', slug: 'r36_monthly_2026-08' },
 ];
@@ -18,6 +22,7 @@ export default function ThinkingPage() {
   const [cat, setCat] = useState('全部');
   const [reportItem, setReportItem] = useState<ThinkingItem | null>(null);
   const [monthly, setMonthly] = useState<{ slug: string; title: string } | null>(null);
+  const [viewer, setViewer] = useState<{ url: string; title: string } | null>(null);
 
   const filtered = useMemo(
     () => (cat === '全部' ? thinkingItems : thinkingItems.filter((x) => x.cat === cat)),
@@ -65,20 +70,22 @@ export default function ThinkingPage() {
                     </div>
                     <div className="text-[13px] font-semibold text-slate-100 mb-1">{m.title}</div>
                     <div className="text-[11px] text-slate-500 leading-relaxed">{m.desc}</div>
-                    <div className="text-[10px] text-cyan-400/80 mt-2">
-                      {m.href ? '在线查看 →' : '报告原文 →'}
-                    </div>
                   </>
                 );
-                return m.href ? (
-                  <a key={m.title} href={m.href} target="_blank" rel="noreferrer"
-                    className="rounded-xl border border-[#334155] bg-[#1e293b] p-4 hover:border-cyan-400/30 hover:bg-slate-800/30 transition-colors">
-                    {inner}
-                  </a>
-                ) : (
-                  <button key={m.title} type="button" onClick={() => m.slug && setMonthly({ slug: m.slug, title: m.title })}
+                const label = (m as { href?: string; view?: string; slug?: string }).href
+                  ? '在线查看 →'
+                  : (m as { view?: string }).view ? '文档查看 →' : '报告原文 →';
+                const handle = () => {
+                  const x = m as { href?: string; view?: string; slug?: string };
+                  if (x.href) window.open(x.href, '_blank', 'noopener');
+                  else if (x.view) setViewer({ url: x.view, title: m.title });
+                  else if (x.slug) setMonthly({ slug: x.slug, title: m.title });
+                };
+                return (
+                  <button key={m.title} type="button" onClick={handle}
                     className="text-left rounded-xl border border-[#334155] bg-[#1e293b] p-4 hover:border-cyan-400/30 hover:bg-slate-800/30 transition-colors">
                     {inner}
+                    <div className="text-[10px] text-cyan-400/80 mt-2">{label}</div>
                   </button>
                 );
               })}
@@ -173,6 +180,18 @@ export default function ThinkingPage() {
       </div>
       {reportItem?.report && <ReportModal slug={reportItem.report} title={reportItem.title} onClose={() => setReportItem(null)} />}
       {monthly && <ReportModal slug={monthly.slug} title={monthly.title} onClose={() => setMonthly(null)} />}
+      {viewer && (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center p-2 sm:p-6" role="dialog" aria-modal="true">
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setViewer(null)} />
+          <div className="relative w-full max-w-5xl h-[90vh] rounded-2xl border border-[#334155] bg-white shadow-2xl overflow-hidden">
+            <div className="flex items-center justify-between gap-3 border-b border-[#334155] bg-[#0f172a] px-4 py-2.5">
+              <span className="text-sm text-slate-200">{viewer.title}</span>
+              <button onClick={() => setViewer(null)} aria-label="关闭" className="rounded border border-[#334155] px-2 py-0.5 text-sm text-slate-400 hover:text-slate-200">✕</button>
+            </div>
+            <iframe src={viewer.url} title={viewer.title} className="w-full h-[calc(90vh-42px)] bg-white" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

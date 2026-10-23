@@ -6,11 +6,18 @@ import { thinkingItems, thinkingSummary } from '@/data/thinking';
 import type { ThinkingItem } from '@/data/thinking';
 import ReportModal from '@/components/ReportModal';
 
+const monthlyReports = [
+  { title: '淘顺实时授信月报（2026-09）', date: '2026-09', desc: '12 sheet + 正文，含分省下钻与管控效果追踪', href: '/reports/monthly/r34_monthly_2026-09.html' },
+  { title: '9 月重点省份分析', date: '2026-09', desc: '涨幅省份下钻、原因拆解与关注点', slug: 'r35_monthly_prov_2026-09' },
+  { title: '8 月月报文本提取', date: '2026-08', desc: '月度结论与分省要点', slug: 'r36_monthly_2026-08' },
+];
+
 const CATS = ['全部', '门店', '套餐', '策略', '模型', '监控', '治理', '质态', '对外', '工程', '事故'];
 
 export default function ThinkingPage() {
   const [cat, setCat] = useState('全部');
   const [reportItem, setReportItem] = useState<ThinkingItem | null>(null);
+  const [monthly, setMonthly] = useState<{ slug: string; title: string } | null>(null);
 
   const filtered = useMemo(
     () => (cat === '全部' ? thinkingItems : thinkingItems.filter((x) => x.cat === cat)),
@@ -38,6 +45,45 @@ export default function ThinkingPage() {
               最后是一份阶段总结。
             </p>
           </div>
+        </AnimatedSection>
+
+        {/* 月报分析 */}
+        <AnimatedSection>
+          <section className="mb-10">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-sm font-semibold text-slate-100">月报分析</span>
+              <span className="h-px flex-1 bg-[#334155]" />
+              <span className="text-[10px] text-slate-600">按月出具的 Vintage 与质态报告</span>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {monthlyReports.map((m) => {
+                const inner = (
+                  <>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-mono text-slate-500">{m.date}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded bg-cyan-400/10 text-cyan-300/90 border border-cyan-400/20">月报</span>
+                    </div>
+                    <div className="text-[13px] font-semibold text-slate-100 mb-1">{m.title}</div>
+                    <div className="text-[11px] text-slate-500 leading-relaxed">{m.desc}</div>
+                    <div className="text-[10px] text-cyan-400/80 mt-2">
+                      {m.href ? '在线查看 →' : '报告原文 →'}
+                    </div>
+                  </>
+                );
+                return m.href ? (
+                  <a key={m.title} href={m.href} target="_blank" rel="noreferrer"
+                    className="rounded-xl border border-[#334155] bg-[#1e293b] p-4 hover:border-cyan-400/30 hover:bg-slate-800/30 transition-colors">
+                    {inner}
+                  </a>
+                ) : (
+                  <button key={m.title} type="button" onClick={() => m.slug && setMonthly({ slug: m.slug, title: m.title })}
+                    className="text-left rounded-xl border border-[#334155] bg-[#1e293b] p-4 hover:border-cyan-400/30 hover:bg-slate-800/30 transition-colors">
+                    {inner}
+                  </button>
+                );
+              })}
+            </div>
+          </section>
         </AnimatedSection>
 
         {/* 分类筛选 */}
@@ -126,6 +172,7 @@ export default function ThinkingPage() {
         </AnimatedSection>
       </div>
       {reportItem?.report && <ReportModal slug={reportItem.report} title={reportItem.title} onClose={() => setReportItem(null)} />}
+      {monthly && <ReportModal slug={monthly.slug} title={monthly.title} onClose={() => setMonthly(null)} />}
     </div>
   );
 }

@@ -72,6 +72,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {item.label}
               </button>
             ))}
+            <a
+              href="/monitor-app/index.html"
+              className="px-3 py-1.5 rounded-md text-sm text-cyan-300/90 bg-cyan-400/5 border border-cyan-400/20 hover:bg-cyan-400/10 hover:text-cyan-200 transition-all duration-200"
+            >
+              在线看板
+            </a>
           </div>
 
           {/* Mobile menu button */}

@@ -101,6 +101,29 @@ export default function MonitorSidebar({ currentPage, collapsed, onToggle, onNav
         })}
       </nav>
 
+      {/* 新版看板入口 */}
+      <div className="px-2 pb-2">
+        <a
+          href="/monitor-app/index.html"
+          className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-200 text-cyan-300/90 bg-cyan-500/5 hover:bg-cyan-500/10 border border-cyan-500/20 ${
+            collapsed ? 'justify-center' : ''
+          }`}
+          title={collapsed ? '新版看板' : undefined}
+        >
+          <span className="shrink-0">
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 6h16M4 12h16M4 18h10" />
+            </svg>
+          </span>
+          {!collapsed && (
+            <div className="text-left min-w-0">
+              <div className="font-medium truncate">新版看板</div>
+              <div className="text-[10px] text-slate-500 truncate">9 模块 · 在线演示</div>
+            </div>
+          )}
+        </a>
+      </div>
+
       {/* 底部信息 */}
       {!collapsed && (
         <div className="px-4 py-3 border-t border-[#334155]/30">

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>数据监控平台 · 案例模板</title>
+<style>
+:root{--bg:#0a0b1e;--panel:#11132b;--line:rgba(255,255,255,.09);--t0:#f4f6ff;--t1:#b6bcde;--t2:#7a82ad;--acc:#7c5cff;--cy:#00d4ff}
+*{box-sizing:border-box}
+body{margin:0;background:
+  radial-gradient(900px 600px at 8% -8%, rgba(124,92,255,.25), transparent 60%),
+  radial-gradient(800px 500px at 100% 0%, rgba(0,212,255,.16), transparent 60%),
+  var(--bg);color:var(--t0);font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:56px 24px 80px}
+.kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--t2);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--cy);box-shadow:0 0 12px var(--cy)}
+h1{font-size:38px;margin:16px 0 8px;letter-spacing:-.02em}
+.sub{color:var(--t1);font-size:15px;line-height:1.8;max-width:720px}
+.stats{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 34px}
+.stat{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:12px;padding:12px 18px;min-width:132px}
+.stat b{display:block;font-size:22px;color:#fff}
+.stat span{font-size:12px;color:var(--t2)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));transition:.22s}
+.card:hover{transform:translateY(-3px);border-color:rgba(124,92,255,.55);box-shadow:0 18px 40px -20px rgba(124,92,255,.65)}
+.thumb{height:186px;overflow:hidden;border-bottom:1px solid var(--line);background:#0d0f24}
+.thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.meta{padding:14px 16px 16px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.name{font-weight:600;font-size:15px}
+.tag{font-size:11px;color:var(--t2);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+.desc{color:var(--t1);font-size:12.5px;line-height:1.7;margin-top:6px}
+.foot{margin-top:40px;color:var(--t2);font-size:12px;line-height:1.8;border-top:1px solid var(--line);padding-top:18px}
+</style></head>
+<body><div class="wrap">
+  <div class="kicker"><span class="dot"></span>Risk Monitor · Case Template</div>
+  <h1>数据监控平台 · 案例模板</h1>
+  <p class="sub">新版风控监控看板离线打包版：9 个监控模块，覆盖风险概览、通过率、逾期、异常诊断、特批、模型、业务量、评级与工作笔记。
+  本页为静态快照，可直接双击打开，无需后端与数据库。</p>
+  <div class="stats">
+    <div class="stat"><b>9</b><span>监控模块</span></div>
+    <div class="stat"><b>全静态</b><span>免后端 / 免数据库</span></div>
+    <div class="stat"><b>响应式</b><span>桌面 + 移动</span></div>
+  </div>
+  <div class="grid">
+    <a class="card" href="pages/overview.html">
+      <div class="thumb"><img src="assets/shots/overview.jpg" alt="风险概览" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">风险概览</span><span class="tag">1300 KB</span></div>
+        <div class="desc">全国风险大盘：通过率、逾期、特批、异常一屏总览</div>
+      </div>
+    </a>
+    <a class="card" href="pages/pass-rate.html">
+      <div class="thumb"><img src="assets/shots/pass-rate.jpg" alt="通过率监控" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">通过率监控</span><span class="tag">407 KB</span></div>
+        <div class="desc">分省/分客群/分策略通过率与标准对比、日趋势</div>
+      </div>
+    </a>
+    <a class="card" href="pages/overdue.html">
+      <div class="thumb"><img src="assets/shots/overdue.jpg" alt="逾期率监控" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">逾期率监控</span><span class="tag">1326 KB</span></div>
+        <div class="desc">分省逾期结构、期数分布、地市下钻</div>
+      </div>
+    </a>
+    <a class="card" href="pages/anomaly.html">
+      <div class="thumb"><img src="assets/shots/anomaly.jpg" alt="异常诊断" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">异常诊断</span><span class="tag">173 KB</span></div>
+        <div class="desc">单量突增/存量欺诈/重复申请自动体检</div>
+      </div>
+    </a>
+    <a class="card" href="pages/special.html">
+      <div class="thumb"><img src="assets/shots/special.jpg" alt="特批分析" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">特批分析</span><span class="tag">365 KB</span></div>
+        <div class="desc">特批白名单客群质态与通过口径对照</div>
+      </div>
+    </a>
+    <a class="card" href="pages/model.html">
+      <div class="thumb"><img src="assets/shots/model.jpg" alt="模型监控" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">模型监控</span><span class="tag">288 KB</span></div>
+        <div class="desc">模型分分布、策略分支效果与漂移</div>
+      </div>
+    </a>
+    <a class="card" href="pages/volume.html">
+      <div class="thumb"><img src="assets/shots/volume.jpg" alt="业务量" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">业务量</span><span class="tag">172 KB</span></div>
+        <div class="desc">省市/套餐/门店业务量与时段分布</div>
+      </div>
+    </a>
+    <a class="card" href="pages/rating.html">
+      <div class="thumb"><img src="assets/shots/rating.jpg" alt="评级分析" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">评级分析</span><span class="tag">261 KB</span></div>
+        <div class="desc">代理商与门店评级、质态交叉</div>
+      </div>
+    </a>
+    <a class="card" href="pages/notes.html">
+      <div class="thumb"><img src="assets/shots/notes.jpg" alt="工作笔记" loading="lazy"></div>
+      <div class="meta">
+        <div class="row"><span class="name">工作笔记</span><span class="tag">292 KB</span></div>
+        <div class="desc">平台内嵌知识库与取数手册</div>
+      </div>
+    </a>
+  </div>
+  <div class="foot">数据为打包时刻的快照（2026-10-26 10:38），仅供案例展示；平台在线版：<code>http://localhost:3000/new-dashboard</code></div>
+</div></body></html>

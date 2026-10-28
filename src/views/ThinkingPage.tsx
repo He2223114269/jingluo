@@ -7,7 +7,7 @@ import type { ThinkingItem } from '@/data/thinking';
 import ReportModal from '@/components/ReportModal';
 
 const monthlyReports = [
-  { title: '淘顺实时授信月报（2026-09）', date: '2026-09', desc: '12 sheet + 正文，含分省下钻与管控效果追踪', href: '/reports/monthly/r34_monthly_2026-09.html' },
+  { title: '淘顺实时授信月报（2026-09）', date: '2026-09', desc: '12 sheet + 正文，含分省下钻与管控效果追踪', view: '/reports/monthly/r34_monthly_2026-09.html' },
   { title: '淘顺实时授信月报（2026-08）', date: '2026-08', desc: '文档在线查看', view: '/reports/monthly/r40_monthly_2026-08.html' },
   { title: '淘顺实时授信月报（2026-07）', date: '2026-07', desc: '文档在线查看', view: '/reports/monthly/r39_monthly_2026-07.html' },
   { title: '淘顺实时授信月报（2026-05）', date: '2026-05', desc: '文档在线查看', view: '/reports/monthly/r38_monthly_2026-05.html' },
